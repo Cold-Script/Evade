@@ -10,8 +10,10 @@ local PhantomForcesWindow = Library:NewWindow("YOUHUB | Evade")
 local v0 = PhantomForcesWindow:NewSection("Farm")
 v0:CreateToggle("AFK Farm",function(value)
 _G.AFK = value
-while _G.AFK do wait()
+while _G.AFK do wait(0.5)
 localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(6007, 7005, 8005)
+wait(0.25)
+localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(3003.5, 7005, 4002.5)
 	end
 end)
 local v1 = PhantomForcesWindow:NewSection("Respawn")
@@ -28,7 +30,7 @@ end
 end
 end)
 local v2 = PhantomForcesWindow:NewSection("Camera")
-v2:CreateDropdown("POV Camera", {"Follow", "Fixed", "Attach"}, function(value)
+v2:CreateDropdown("POV Camera", {"Follow", "Fixed", "Attach"}, 1,function(value)
 _G.POVc = value
 if _G.POVc == "Follow" then
                 workspace.CurrentCamera.CameraType = "Follow"
@@ -81,7 +83,4 @@ while _G.Drink do wait()
 game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
 end
 end)
-v3:CreateButton("Eng or Spa [ 10 second ]", function()
-wait(10)
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("English or Spanish (💀who goes is gay💀)")
-end)
+
