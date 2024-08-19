@@ -1,11 +1,10 @@
         local Players = game:GetService('Players')
         local localplayer = Players.LocalPlayer
-        local _Humanoid = game.Players.LocalPlayer.Character.Humanoid
         local GuiService = game:GetService("GuiService")
         local Light = game:GetService("Lighting")
 local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-local PhantomForcesWindow = Library:NewWindow("YOUHUB | Evade")
+local PhantomForcesWindow = Library:NewWindow("⁠☆ YOUHUB ☆ | Evade")
 local v0 = PhantomForcesWindow:NewSection("Farm")
 v0:CreateToggle("AFK Farm",function(value)
 _G.AFK = value
@@ -56,18 +55,18 @@ end)
 local v3 = PhantomForcesWindow:NewSection("Misc")
 v3:CreateButton("WalkSpeed", function()
 while wait() do
-  _Humanoid.WalkSpeed = 50
+  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
 end
 end)
 v3:CreateButton("JumpPower", function()
 while wait() do
-  _Humanoid.JumpPower = 100
+  game.Players.LocalPlayer.Character.Humanoid.JumpPower = 100
 end
 end)
 v3:CreateButton("HipHeight [ 15 second ]", function()
-  _Humanoid.HipHeight = 50
+  game.Players.LocalPlayer.Character.Humanoid.HipHeight = 50
 wait(15)
-  _Humanoid.HipHeight = 2
+  game.Players.LocalPlayer.Character.Humanoid.HipHeight = 2
 end)
 v3:CreateButton("Day", function()
   Light.ClockTime = 12
