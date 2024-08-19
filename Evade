@@ -11,13 +11,10 @@ local v0 = PhantomForcesWindow:NewSection("Farm")
 v0:CreateToggle("AFK Farm",function(value)
 _G.AFK = value
 while _G.AFK do wait()
-if AFK then
-localplayer.Character:FindFirstChild('HumanoidRootPart') ~= nil then
 localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(6007, 7005, 8005)
 	end
     end
 end)
-AFK = true
 local v1 = PhantomForcesWindow:NewSection("Respawn")
 
 v1:CreateButton("Respawn", function()
