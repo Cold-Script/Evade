@@ -4,7 +4,7 @@
         local GuiService = game:GetService("GuiService")
         local Light = game:GetService("Lighting")
 local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
-
+game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 local PhantomForcesWindow = Library:NewWindow("YOUHUB | Evade")
 local v0 = PhantomForcesWindow:NewSection("Farm")
 v0:CreateToggle("AFK Farm",function(value)
