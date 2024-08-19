@@ -14,7 +14,7 @@ local v1 = PhantomForcesWindow:NewSection("Respawn")
 v1:CreateButton("Respawn", function()
 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end)
-v1:CreateToggle("Respawn On Downed", function(value)
+v1:CreateToggle("Respawn On Downed", false,function(value)
 _G.Rep = value
 while _G.Rep do wait()
 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
@@ -22,14 +22,14 @@ end
 end)
 
 local v2 = PhantomForcesWindow:NewSection("Camera")
-v2:CreateSlider("Max Zoom", 100, 300, 100, function(value)
+v2:CreateSlider("Max Zoom", 100, 300, 300, function(value)
 _G.Zo = value
  end)
 v2:CreateButton("No Shake Camera", function()
   localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
 end)
 
-v2:CreateToggle("Enabled Added Zoom", function(value)
+v2:CreateToggle("Enabled Added Zoom", false,function(value)
 _G.Zo2 = value
 while _G.Zo2 do wait()
 workspace.CurrentCamera.MaxZoom = _G.Zo
@@ -58,7 +58,7 @@ end)
 v3:CreateButton("Night", function()
   Light.ClockTime = 24
 end)
-v3:CreateToggle("Fullbright", function(value)
+v3:CreateToggle("Fullbright", false,function(value)
 if value then
 Light.Brightness = 3
 Light.GlobalShadows = false
