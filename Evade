@@ -1,9 +1,9 @@
-local WorkspacePlayers = game:GetService("Workspace").Game.Players
-		local Players = game:GetService('Players')
-		local localplayer = Players.LocalPlayer
-                local humanoid = localplayer.Character.Humanoid
-		local GuiService = game:GetService("GuiService")
-		local Light = game:GetService("Lighting")
+
+        local Players = game:GetService('Players')
+        local localplayer = Players.LocalPlayer
+        local humanoid = localplayer.Character.Humanoid
+        local GuiService = game:GetService("GuiService")
+        local Light = game:GetService("Lighting")
 
 local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
 
@@ -14,26 +14,25 @@ local v1 = PhantomForcesWindow:NewSection("Respawn")
 v1:CreateButton("Respawn", function()
 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end)
-v1:CreateToggle("Respawn On Downed", false,function(value)
+v1:CreateToggle("Respawn On Downed",function(value)
 _G.Rep = value
 while _G.Rep do wait()
 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end
 end)
-
 local v2 = PhantomForcesWindow:NewSection("Camera")
-v2:CreateSlider("Max Zoom", 100, 300, 300, function(value)
-_G.Zo = value
- end)
+v2:CreateDropdown("POV Camera", {"Follow", "Fixed", "Attach"}, function(value)
+_G.POVc = value
+if _G.POVc == "Follow" then
+                workspace.CurrentCamera.CameraType = "Follow"
+            elseif _G.POVc == 'Fixed' then
+                workspace.CurrentCamera.CameraType = "Fixed"
+            elseif _G.POVc == 'Attach' then
+                workspace.CurrentCamera.CameraType = "Attach"
+            end
+end)
 v2:CreateButton("No Shake Camera", function()
   localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
-end)
-
-v2:CreateToggle("Enabled Added Zoom", false,function(value)
-_G.Zo2 = value
-while _G.Zo2 do wait()
-workspace.CurrentCamera.MaxZoom = _G.Zo
-end
 end)
 
 local v3 = PhantomForcesWindow:NewSection("Misc")
@@ -58,14 +57,15 @@ end)
 v3:CreateButton("Night", function()
   Light.ClockTime = 24
 end)
-v3:CreateToggle("Fullbright", false,function(value)
+v3:CreateToggle("Fullbright",function(value)
 if value then
 Light.Brightness = 3
 Light.GlobalShadows = false
 Light.OutdoorAmbient = Color3.new(1,1,1)
 else
-Light.Brightness = 1
+Light.Brightness = 2
 Light.GlobalShadows = true
-Light.OutdoorAmbient = Color3.new(0,0,0)
+Light.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
 end
 end)
+
