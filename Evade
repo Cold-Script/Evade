@@ -1,7 +1,6 @@
-
         local Players = game:GetService('Players')
         local localplayer = Players.LocalPlayer
-        local humanoid = localplayer.Character.Humanoid
+        local _Humanoid = game.Players.LocalPlayer.Character.Humanoid
         local GuiService = game:GetService("GuiService")
         local Light = game:GetService("Lighting")
 local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
@@ -10,10 +9,10 @@ local PhantomForcesWindow = Library:NewWindow("YOUHUB | Evade")
 local v0 = PhantomForcesWindow:NewSection("Farm")
 v0:CreateToggle("AFK Farm",function(value)
 _G.AFK = value
-while _G.AFK do wait(0.5)
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(6007, 7005, 8005)
-wait(0.25)
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(3003.5, 7005, 4002.5)
+while _G.AFK do wait(0.3)
+localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, 3500, 0)
+wait(0.2)
+localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(500, 3500, 500)
 	end
 end)
 local v1 = PhantomForcesWindow:NewSection("Respawn")
@@ -30,7 +29,7 @@ end
 end
 end)
 local v2 = PhantomForcesWindow:NewSection("Camera")
-v2:CreateDropdown("POV Camera", {"Follow", "Fixed", "Attach"}, 1,function(value)
+v2:CreateDropdown("POV Camera", {"Follow", "Fixed", "Attach","Watch","Track","Custom","Scriptable","Orbital"}, 1,function(value)
 _G.POVc = value
 if _G.POVc == "Follow" then
                 workspace.CurrentCamera.CameraType = "Follow"
@@ -38,6 +37,16 @@ if _G.POVc == "Follow" then
                 workspace.CurrentCamera.CameraType = "Fixed"
             elseif _G.POVc == 'Attach' then
                 workspace.CurrentCamera.CameraType = "Attach"
+            elseif _G.POVc == 'Watch' then
+                workspace.CurrentCamera.CameraType = "Watch"
+            elseif _G.POVc == 'Attach' then
+                workspace.CurrentCamera.CameraType = "Track"
+            elseif _G.POVc == 'Custom' then
+                workspace.CurrentCamera.CameraType = "Custom"
+            elseif _G.POVc == 'Scriptable' then
+                workspace.CurrentCamera.CameraType = "Scriptable"
+            elseif _G.POVc == 'Orbital' then
+                workspace.CurrentCamera.CameraType = "Orbital"
             end
 end)
 v2:CreateButton("No Shake Camera", function()
@@ -47,18 +56,18 @@ end)
 local v3 = PhantomForcesWindow:NewSection("Misc")
 v3:CreateButton("WalkSpeed", function()
 while wait() do
-  humanoid.WalkSpeed = 50
+  _Humanoid.WalkSpeed = 50
 end
 end)
 v3:CreateButton("JumpPower", function()
 while wait() do
-  humanoid.JumpPower = 100
+  _Humanoid.JumpPower = 100
 end
 end)
 v3:CreateButton("HipHeight [ 15 second ]", function()
-  humanoid.HipHeight = 50
+  _Humanoid.HipHeight = 50
 wait(15)
-  humanoid.HipHeight = 2
+  _Humanoid.HipHeight = 2
 end)
 v3:CreateButton("Day", function()
   Light.ClockTime = 12
