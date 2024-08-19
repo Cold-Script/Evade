@@ -4,11 +4,20 @@
         local humanoid = localplayer.Character.Humanoid
         local GuiService = game:GetService("GuiService")
         local Light = game:GetService("Lighting")
-
 local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
 
 local PhantomForcesWindow = Library:NewWindow("YOUHUB | Evade")
-
+local v0 = PhantomForcesWindow:NewSection("Farm")
+v0:CreateToggle("AFK Farm",function(value)
+_G.AFK = value
+while _G.AFK do wait()
+if AFK then
+localplayer.Character:FindFirstChild('HumanoidRootPart') ~= nil then
+localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(6007, 7005, 8005)
+	end
+    end
+end)
+AFK = true
 local v1 = PhantomForcesWindow:NewSection("Respawn")
 
 v1:CreateButton("Respawn", function()
@@ -17,7 +26,9 @@ end)
 v1:CreateToggle("Respawn On Downed",function(value)
 _G.Rep = value
 while _G.Rep do wait()
+if localplayer.Character:GetAttribute("Downed") then
 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+end
 end
 end)
 local v2 = PhantomForcesWindow:NewSection("Camera")
