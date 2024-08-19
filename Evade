@@ -75,6 +75,13 @@ end)
 v3:CreateButton("Night", function()
   Light.ClockTime = 24
 end)
+v3:CreateButton("No Cooldown Jump", function()
+  local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+if InfiniteJumpEnabled then
+game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
 v3:CreateToggle("Fullbright",function(value)
 if value then
 Light.Brightness = 3
