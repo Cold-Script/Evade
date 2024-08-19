@@ -1,6 +1,7 @@
 local WorkspacePlayers = game:GetService("Workspace").Game.Players
 		local Players = game:GetService('Players')
 		local localplayer = Players.LocalPlayer
+                local humanoid = localplayer.Character.Humanoid
 		local GuiService = game:GetService("GuiService")
 		local Light = game:GetService("Lighting")
 
@@ -35,13 +36,36 @@ workspace.CurrentCamera.MaxZoom = _G.Zo
 end
 end)
 
-KillingCheats:CreateDropdown("DropDown", {"Hello", "World", "Hello World"}, 2, function(text)
-print(text)
+local v3 = PhantomForcesWindow:NewSection("Misc")
+v3:CreateButton("WalkSpeed", function()
+while wait() do
+  humanoid.WalkSpeed = 50
+end
 end)
-
-KillingCheats:CreateSlider("Slider", 0, 100, 15, false, function(value)
-print(value)
- end)
-KillingCheats:CreateColorPicker("Picker", Color3.new(255, 255, 255), function(value)
-print(value)
+v3:CreateButton("JumpPower", function()
+while wait() do
+  humanoid.JumpPower = 100
+end
+end)
+v3:CreateButton("HipHeight [ 15 second ]", function()
+  humanoid.HipHeight = 50
+wait(15)
+  humanoid.HipHeight = 2
+end)
+v3:CreateButton("Day", function()
+  Light.ClockTime = 12
+end)
+v3:CreateButton("Night", function()
+  Light.ClockTime = 24
+end)
+v3:CreateToggle("Fullbright", function(value)
+if value then
+Light.Brightness = 3
+Light.GlobalShadows = false
+Light.OutdoorAmbient = Color3.new(1,1,1)
+else
+Light.Brightness = 1
+Light.GlobalShadows = true
+Light.OutdoorAmbient = Color3.new(0,0,0)
+end
 end)
