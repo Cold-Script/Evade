@@ -1,1 +1,47 @@
+local WorkspacePlayers = game:GetService("Workspace").Game.Players
+		local Players = game:GetService('Players')
+		local localplayer = Players.LocalPlayer
+		local GuiService = game:GetService("GuiService")
+		local Light = game:GetService("Lighting")
 
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+
+local PhantomForcesWindow = Library:NewWindow("YOUHUB | Evade")
+
+local v1 = PhantomForcesWindow:NewSection("Respawn")
+
+v1:CreateButton("Respawn", function()
+game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+end)
+v1:CreateToggle("Respawn On Downed", function(value)
+_G.Rep = value
+while _G.Rep do wait()
+game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+end
+end)
+
+local v2 = PhantomForcesWindow:NewSection("Camera")
+v2:CreateSlider("Max Zoom", 100, 300, 100, function(value)
+_G.Zo = value
+ end)
+v2:CreateButton("No Shake Camera", function()
+  localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
+end)
+
+v2:CreateToggle("Enabled Added Zoom", function(value)
+_G.Zo2 = value
+while _G.Zo2 do wait()
+workspace.CurrentCamera.MaxZoom = _G.Zo
+end
+end)
+
+KillingCheats:CreateDropdown("DropDown", {"Hello", "World", "Hello World"}, 2, function(text)
+print(text)
+end)
+
+KillingCheats:CreateSlider("Slider", 0, 100, 15, false, function(value)
+print(value)
+ end)
+KillingCheats:CreateColorPicker("Picker", Color3.new(255, 255, 255), function(value)
+print(value)
+end)
