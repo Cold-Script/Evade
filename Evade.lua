@@ -40,7 +40,7 @@ game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end
 end 
 end})
-v7 = v4:AddLeftGroupbox("Misc")
+v7 = v4:AddRightGroupbox("Misc")
 v7:AddButton({Text="No Shake Camera",Func=function()
   localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
  end})
@@ -80,7 +80,8 @@ Func = function()
 game:GetService("ReplicatedStorage").Events.ReturnToMenu:FireServer()
 	end    
 })
-v7:AddToggle("",{Text="Fullbright [ NoFog ]",Callback=function(value)
+v8 = v4:AddRightGroupbox("Helper")
+v8:AddToggle("",{Text="Fullbright [ NoFog ]",Callback=function(value)
 if value then
 Light.Brightness = 3
 Light.GlobalShadows = false
@@ -93,83 +94,29 @@ Light.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
 Light.FogEnd = 200
 end
   end})
-v7:AddToggle("",{Text="Auto Drink Cola",Callback=function(value)
+v8:AddToggle("",{Text="Auto Drink Cola",Callback=function(value)
 _G.Drink = value
 while _G.Drink do wait()
 game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
 end
   end})
-v7:AddToggle("",{Text="Auto Whistle",Callback=function(value)
+v8:AddToggle("",{Text="Auto Whistle",Callback=function(value)
 _G.Whi = value
 while _G.Whi do wait()
 game:GetService("Players").LocalPlayer.PlayerScripts.Events.KeybindUsed:Fire("Whistle", true)
 game:GetService("ReplicatedStorage").Events.Whistle:FireServer()				
 end
   end})
-v7:AddToggle("",{Text="Auto Revive [ Near ]",Callback=function(value)
+v8:AddToggle("",{Text="Auto Revive [ Near ]",Callback=function(value)
 _G.Re = value
 while _G.Re do wait()
 game:GetService("ReplicatedStorage").Events.Revive:FireServer()
 end
   end})
-v7:AddToggle("",{Text="Fast Revive",Callback=function(value)
+v8:AddToggle("",{Text="Fast Revive",Callback=function(value)
 _G.FRe = value
 while _G.FRe do wait()
 workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
 end
   end})
-v8 = v4:AddRightGroupbox("Teleport Mode")
-v8:AddButton({
-Text = "Main Game",
-DoubleClick = true,
-Func = function()
-local TeleportService = game:GetService('TeleportService')
-GameId = 9872472334
-TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-end    
-})
-v8:AddButton({
-Text = "Casual",
-DoubleClick = true,
-Func = function()
-local TeleportService = game:GetService('TeleportService')
-GameId = 10662542523
-TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-end    
-})
-v8:AddButton({
-Text = "Social Space",
-DoubleClick = true,
-Func = function()
-local TeleportService = game:GetService('TeleportService')
-GameId = 10324347967
-TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-end    
-})
-v8:AddButton({
-Text = "Big Team",
-DoubleClick = true,
-Func = function()
-local TeleportService = game:GetService('TeleportService')
-GameId = 10324346056
-TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-end    
-})
-v8:AddButton({
-Text = "DeathMatch Team",
-DoubleClick = true,
-Func = function()
-local TeleportService = game:GetService('TeleportService')
-GameId = 110539706691
-TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-end    
-})
-v8:AddButton({
-Text = "Voice Chat Only",
-DoubleClick = true,
-Func = function()
-local TeleportService = game:GetService('TeleportService')
-GameId = 10808838353
-TeleportService:Teleport(GameId, game.Players.LocalPlayer)
-end    
-})
+
