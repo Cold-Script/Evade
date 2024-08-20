@@ -36,7 +36,7 @@ localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(500
     end
   end)
  end})
-v6 = v4:AddRightGroupbox("Repawn")
+v6 = v4:AddLeftGroupbox("Repawn")
 v6:AddButton({Text="Respawn [ Downed Only ]",Func=function()
 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end})
