@@ -44,12 +44,10 @@ v2:CreateButton("No Shake Camera", function()
 end)
 
 local v3 = PhantomForcesWindow:NewSection("Misc")
-v3:CreateButton("Infyield [ AC ]", function()
+v3:CreateButton("Infinite yield [ AC ]", function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
-v3:CreateButton("Speed", function()
-game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * 50/100)
-end)
+
 v3:CreateButton("Disabled Barrier", function()
 for _,v in pairs(workspace.Game.Map:GetDescendants()) do
 if v.Name == "InvisParts" then
@@ -92,7 +90,7 @@ game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
 end
 end)
 local v4 = PhantomForcesWindow:NewSection("Credits")
-v4:CreateButton("Owner [ Click ]", function()
+v4:CreateButton("rechedmcvn & GV", function()
 game:GetService("Players").LocalPlayer.PlayerGui.HUD.Messages.Use:Fire("<font color=\"rgb(255,0,0)\">Owner : rechedmcvn and GV (100%) </font>")
 end)
 
