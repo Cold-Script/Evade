@@ -36,27 +36,24 @@ if _G.POVc == "Follow" then
                 workspace.CurrentCamera.CameraType = "Fixed"
             elseif _G.POVc == 'Attach' then
                 workspace.CurrentCamera.CameraType = "Attach"
-            elseif _G.POVc == 'Watch' then
             end
 end)
 v2:CreateButton("No Shake Camera", function()
   localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
 end)
+v2:CreateButton("Added Zoom", function()
+game:GetService("ReplicatedStorage").Events.UpdateSetting:FireServer(FieldOfView, 200)
+end)
 local v3 = PhantomForcesWindow:NewSection("Misc")
-v3:CreateButton("WalkSpeed", function()
-while wait() do
-  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
-end
+v3:CreateButton("Infyield [ AC ]", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
-v3:CreateButton("JumpPower", function()
-while wait() do
-  game.Players.LocalPlayer.Character.Humanoid.JumpPower = 100
+v3:CreateButton("Disabled Barrier", function()
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "InvisParts" then
+v:Destroy()
 end
-end)
-v3:CreateButton("HipHeight [ 15 second ]", function()
-  game.Players.LocalPlayer.Character.Humanoid.HipHeight = 50
-wait(15)
-  game.Players.LocalPlayer.Character.Humanoid.HipHeight = 2
+end
 end)
 v3:CreateButton("Day", function()
   Light.ClockTime = 12
@@ -72,15 +69,17 @@ game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':C
     end
 end)
 end)
-v3:CreateToggle("Fullbright",function(value)
+v3:CreateToggle("Fullbright [ NoFog ]",function(value)
 if value then
 Light.Brightness = 3
 Light.GlobalShadows = false
 Light.OutdoorAmbient = Color3.new(1,1,1)
+Light.FogEnd = 9e9
 else
 Light.Brightness = 2
 Light.GlobalShadows = true
 Light.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
+Light.FogEnd = 200
 end
 end)
 v3:CreateToggle("Auto Drink Cola",function(value)
