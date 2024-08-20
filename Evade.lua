@@ -40,7 +40,7 @@ game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end
 end 
 end})
-v7 = v4:AddRightGroupbox("Misc")
+v7 = v4:AddLeftGroupbox("Misc")
 v7:AddButton({Text="No Shake Camera",Func=function()
   localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
  end})
