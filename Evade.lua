@@ -81,7 +81,13 @@ game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':C
     end
       end)
   end})
-
+v7:AddButton({
+Text = "Return Too Main Menu",
+DoubleClick = true,
+Callback = function()
+game:GetService("ReplicatedStorage").Events.ReturnToMenu:FireServer()
+	end    
+})
 v7:AddToggle({Text="Fullbright [ NoFog ]",Callback=function(value)
 if value then
 Light.Brightness = 3
@@ -101,3 +107,58 @@ while _G.Drink do wait()
 game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
 end
   end})
+v8 = v4:AddRightGroupbox("Teleport Mode")
+v8:AddButton({
+Text = "Main Game",
+DoubleClick = true,
+Callback = function()
+local TeleportService = game:GetService('TeleportService')
+GameId = 9872472334
+TeleportService:Teleport(GameId, game.Players.LocalPlayer)
+end    
+})
+v8:AddButton({
+Text = "Casual",
+DoubleClick = true,
+Callback = function()
+local TeleportService = game:GetService('TeleportService')
+GameId = 10662542523
+TeleportService:Teleport(GameId, game.Players.LocalPlayer)
+end    
+})
+v8:AddButton({
+Text = "Social Space",
+DoubleClick = true,
+Callback = function()
+local TeleportService = game:GetService('TeleportService')
+GameId = 10324347967
+TeleportService:Teleport(GameId, game.Players.LocalPlayer)
+end    
+})
+v8:AddButton({
+Text = "Big Team",
+DoubleClick = true,
+Callback = function()
+local TeleportService = game:GetService('TeleportService')
+GameId = 10324346056
+TeleportService:Teleport(GameId, game.Players.LocalPlayer)
+end    
+})
+v8:AddButton({
+Text = "DeathMatch Team",
+DoubleClick = true,
+Callback = function()
+local TeleportService = game:GetService('TeleportService')
+GameId = 110539706691
+TeleportService:Teleport(GameId, game.Players.LocalPlayer)
+end    
+})
+v8:AddButton({
+Text = "Voice Chat Only",
+DoubleClick = true,
+Callback = function()
+local TeleportService = game:GetService('TeleportService')
+GameId = 10808838353
+TeleportService:Teleport(GameId, game.Players.LocalPlayer)
+end    
+})
