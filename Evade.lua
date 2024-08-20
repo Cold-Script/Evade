@@ -93,26 +93,26 @@ Light.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
 Light.FogEnd = 200
 end
   end})
-v7:AddToggle({Text="Auto Drink Cola",Callback=function(value)
+v7:AddToggle("",{Text="Auto Drink Cola",Callback=function(value)
 _G.Drink = value
 while _G.Drink do wait()
 game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
 end
   end})
-v7:AddToggle({Text="Auto Whistle",Callback=function(value)
+v7:AddToggle("",{Text="Auto Whistle",Callback=function(value)
 _G.Whi = value
 while _G.Whi do wait()
 game:GetService("Players").LocalPlayer.PlayerScripts.Events.KeybindUsed:Fire("Whistle", true)
 game:GetService("ReplicatedStorage").Events.Whistle:FireServer()				
 end
   end})
-v7:AddToggle({Text="Auto Revive [ Near ]",Callback=function(value)
+v7:AddToggle("",{Text="Auto Revive [ Near ]",Callback=function(value)
 _G.Re = value
 while _G.Re do wait()
 game:GetService("ReplicatedStorage").Events.Revive:FireServer()
 end
   end})
-v7:AddToggle({Text="Fast Revive",Callback=function(value)
+v7:AddToggle("",{Text="Fast Revive",Callback=function(value)
 _G.FRe = value
 while _G.FRe do wait()
 workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
