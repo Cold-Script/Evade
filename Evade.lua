@@ -56,7 +56,7 @@ v7:AddButton({Text="Infinite yield [ AC ]",Func=function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
  end})
 
-v7:AddButton({Text="Disabled Barrier",Funcfunction()
+v7:AddButton({Text="Disabled Barrier",Func=function()
 for _,v in pairs(workspace.Game.Map:GetDescendants()) do
 if v.Name == "InvisParts" then
 v:Destroy()
@@ -84,7 +84,7 @@ game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':C
 v7:AddButton({
 Text = "Return Too Main Menu",
 DoubleClick = true,
-Callback = function()
+Func = function()
 game:GetService("ReplicatedStorage").Events.ReturnToMenu:FireServer()
 	end    
 })
@@ -111,7 +111,7 @@ v8 = v4:AddRightGroupbox("Teleport Mode")
 v8:AddButton({
 Text = "Main Game",
 DoubleClick = true,
-Callback = function()
+Func = function()
 local TeleportService = game:GetService('TeleportService')
 GameId = 9872472334
 TeleportService:Teleport(GameId, game.Players.LocalPlayer)
@@ -120,7 +120,7 @@ end
 v8:AddButton({
 Text = "Casual",
 DoubleClick = true,
-Callback = function()
+Func = function()
 local TeleportService = game:GetService('TeleportService')
 GameId = 10662542523
 TeleportService:Teleport(GameId, game.Players.LocalPlayer)
@@ -129,7 +129,7 @@ end
 v8:AddButton({
 Text = "Social Space",
 DoubleClick = true,
-Callback = function()
+Func = function()
 local TeleportService = game:GetService('TeleportService')
 GameId = 10324347967
 TeleportService:Teleport(GameId, game.Players.LocalPlayer)
@@ -138,7 +138,7 @@ end
 v8:AddButton({
 Text = "Big Team",
 DoubleClick = true,
-Callback = function()
+Func = function()
 local TeleportService = game:GetService('TeleportService')
 GameId = 10324346056
 TeleportService:Teleport(GameId, game.Players.LocalPlayer)
@@ -147,7 +147,7 @@ end
 v8:AddButton({
 Text = "DeathMatch Team",
 DoubleClick = true,
-Callback = function()
+Func = function()
 local TeleportService = game:GetService('TeleportService')
 GameId = 110539706691
 TeleportService:Teleport(GameId, game.Players.LocalPlayer)
@@ -156,7 +156,7 @@ end
 v8:AddButton({
 Text = "Voice Chat Only",
 DoubleClick = true,
-Callback = function()
+Func = function()
 local TeleportService = game:GetService('TeleportService')
 GameId = 10808838353
 TeleportService:Teleport(GameId, game.Players.LocalPlayer)
