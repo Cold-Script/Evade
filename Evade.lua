@@ -180,9 +180,9 @@ v9:AddToggle("",{
 v10 = v4:AddRightGroupbox("Timer")
 v10:AddToggle("",{
 Text = "Notify Timer",
-Callback=function(value)
+Callback = function(value)
 _G.Ti = value
 while _G.Ti do wait(1)			
-v0:Notify("Time is : ".. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text)
+v0:Notify("Time is : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text)
 			end				
 		end})
