@@ -16,21 +16,13 @@ local v3 = v0:CreateWindow({
   })
 v4 = v3:AddTab("Explosion")
 v5 = v4:AddLeftGroupbox("Farm")
-v5:AddToggle("",{Text="AFK Farm [ No TP ]",Callback=function(value)
-_G.AFK = value
-      _G.AFK2 = false
-_spawn(function()
-while _G.AFK do wait()
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, 7500, 0)
-    end
-  end)
- end})
-v5:AddToggle("",{Text="AFK Farm [ TP ]",Callback=function(value)
+
+v5:AddToggle("",{Text="AFK Farm",Callback=function(value)
 _G.AFK2 = value
       _G.AFK = false
 _spawn(function()
 while _G.AFK2 do wait(0.3)
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, 4500, 0)
+localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(-500, 4500, -500)
             wait(0.15)
 localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(500, 4500, 500)
     end
@@ -105,6 +97,25 @@ v7:AddToggle({Text="Auto Drink Cola",Callback=function(value)
 _G.Drink = value
 while _G.Drink do wait()
 game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
+end
+  end})
+v7:AddToggle({Text="Auto Whistle",Callback=function(value)
+_G.Whi = value
+while _G.Whi do wait()
+game:GetService("Players").LocalPlayer.PlayerScripts.Events.KeybindUsed:Fire("Whistle", true)
+game:GetService("ReplicatedStorage").Events.Whistle:FireServer()				
+end
+  end})
+v7:AddToggle({Text="Auto Revive [ Near ]",Callback=function(value)
+_G.Re = value
+while _G.Re do wait()
+game:GetService("ReplicatedStorage").Events.Revive:FireServer()
+end
+  end})
+v7:AddToggle({Text="Fast Revive",Callback=function(value)
+_G.FRe = value
+while _G.FRe do wait()
+workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
 end
   end})
 v8 = v4:AddRightGroupbox("Teleport Mode")
