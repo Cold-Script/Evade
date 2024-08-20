@@ -3,17 +3,16 @@ local Players = game:GetService('Players')
         local GuiService = game:GetService("GuiService")
         local Light = game:GetService("Lighting")
 local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
-game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 local PhantomForcesWindow = Library:NewWindow("⁠☆ YOUHUB ☆ | Evade")
 local v0 = PhantomForcesWindow:NewSection("Farm")
 v0:CreateToggle("AFK Farm",function(value)
 _G.AFK = value
 while _G.AFK do wait()
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, 1500, 0)
+localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, 250, 0)
 wait(0.15)
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(500, 1500, 500)
+localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(500, 250, 500)
 wait(0.15)
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(-500, 1500, -500)
+localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(-500, 250, -500)
     end
 end)
 local v1 = PhantomForcesWindow:NewSection("Respawn")
@@ -43,12 +42,13 @@ end)
 v2:CreateButton("No Shake Camera", function()
   localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
 end)
-v2:CreateButton("Added Zoom", function()
-game:GetService("ReplicatedStorage").Events.UpdateSetting:FireServer(FieldOfView, 200)
-end)
+
 local v3 = PhantomForcesWindow:NewSection("Misc")
 v3:CreateButton("Infyield [ AC ]", function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+v3:CreateButton("Speed", function()
+game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * 50/100)
 end)
 v3:CreateButton("Disabled Barrier", function()
 for _,v in pairs(workspace.Game.Map:GetDescendants()) do
@@ -71,6 +71,7 @@ game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':C
     end
 end)
 end)
+
 v3:CreateToggle("Fullbright [ NoFog ]",function(value)
 if value then
 Light.Brightness = 3
@@ -90,9 +91,10 @@ while _G.Drink do wait()
 game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
 end
 end)
-
-
-
+local v4 = PhantomForcesWindow:NewSection("Credits")
+v4:CreateButton("Owner [ Click ]", function()
+game:GetService("Players").LocalPlayer.PlayerGui.HUD.Messages.Use:Fire("<font color=\"rgb(255,0,0)\">Owner : rechedmcvn and GV (100%) </font>")
+end)
 
 
 
