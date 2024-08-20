@@ -112,7 +112,7 @@ Func = function()
 game:GetService("ReplicatedStorage").Events.ReturnToMenu:FireServer()
 	end    
 })
-v8 = v4:AddRightGroupbox("Helper")
+v8 = v4:AddLeftGroupbox("Helper")
 v8:AddToggle("",{Text="Fullbright [ NoFog ]",Callback=function(value)
 if value then
 Light.Brightness = 3
