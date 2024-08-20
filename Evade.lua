@@ -59,9 +59,13 @@ v:Destroy()
 end
 end
   end})
+v7:AddButton({Text="Disable Void ROBLOX",Func=function()
+      workspace.FallenPartsDestroyHeight = 0 / 0 -- otherwise known as nan! (a number below -math.huge)
+    end})
 v7:AddButton({Text="Day",Func=function()
   Light.ClockTime = 12
   end})
+
 v7:AddButton({Text="Night",Func=function()
   Light.ClockTime = 24
 end})
