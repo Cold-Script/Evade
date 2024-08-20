@@ -73,30 +73,17 @@ end
 end 
 end})
 v7 = v4:AddRightGroupbox("Misc")
-v7:AddButton({Text="No Shake Camera",Func=function()
-  localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
- end})
+
 v7:AddButton({Text="Infinite yield [ AC ]",Func=function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
  end})
 
-v7:AddButton({Text="Disabled Barrier",Func=function()
-for _,v in pairs(workspace.Game.Map:GetDescendants()) do
-if v.Name == "InvisParts" then
-v:Destroy()
-end
-end
-  end})
+
 v7:AddButton({Text="Disable Void ROBLOX",Func=function()
       workspace.FallenPartsDestroyHeight = 0 / 0 -- otherwise known as nan! (a number below -math.huge)
     end})
-v7:AddButton({Text="Day",Func=function()
-  Light.ClockTime = 12
-  end})
 
-v7:AddButton({Text="Night",Func=function()
-  Light.ClockTime = 24
-end})
+
 v7:AddButton({Text="No Cooldown Jump",Func=function()
   local InfiniteJumpEnabled = true
 game:GetService("UserInputService").JumpRequest:connect(function()
@@ -151,7 +138,28 @@ while _G.FRe do wait()
 workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
 end
   end})
-
+v8:AddToggle("",{Text="No Shake Camera",Callback=function(value)
+_G.NoC = value			
+while _G.NoC do wait()			
+  localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
+end				
+ end})
+v8:AddToggle("",{Text="Disabled Barrier",Callback=function(value)
+_G.ReIn = value
+while _G.ReIn do wait()			
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "InvisParts" then
+v:Destroy()
+end
+end
+end				
+  end})
+v8:AddToggle("",{Text="Auto Day",Callback=function(value)
+_G.Day = value			
+while _G.Day do wait()			
+  Light.ClockTime = 9
+	end				
+  end})
 v9 = v4:AddRightGroupbox("Visual")
 v9:AddToggle("",{
 	Text = "Bot ESP",
@@ -183,6 +191,6 @@ Text = "Notify Timer",
 Callback = function(value)
 _G.Ti = value
 while _G.Ti do wait(1)			
-v0:Notify("Time is : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text)
+v0:Notify("[ YOU HUB ] : Time is : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text)
 			end				
 		end})
