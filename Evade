@@ -1,4 +1,4 @@
-        local Players = game:GetService('Players')
+local Players = game:GetService('Players')
         local localplayer = Players.LocalPlayer
         local GuiService = game:GetService("GuiService")
         local Light = game:GetService("Lighting")
@@ -12,7 +12,7 @@ while _G.AFK do wait(0.3)
 localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, 3500, 0)
 wait(0.2)
 localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(500, 3500, 500)
-	end
+    end
 end)
 local v1 = PhantomForcesWindow:NewSection("Respawn")
 
@@ -28,7 +28,7 @@ end
 end
 end)
 local v2 = PhantomForcesWindow:NewSection("Camera")
-v2:CreateDropdown("POV Camera", {"Follow", "Fixed", "Attach","Watch","Track","Custom","Scriptable","Orbital"}, 1,function(value)
+v2:CreateDropdown("POV Camera", {"Follow", "Fixed", "Attach"}, 1,function(value)
 _G.POVc = value
 if _G.POVc == "Follow" then
                 workspace.CurrentCamera.CameraType = "Follow"
@@ -37,21 +37,11 @@ if _G.POVc == "Follow" then
             elseif _G.POVc == 'Attach' then
                 workspace.CurrentCamera.CameraType = "Attach"
             elseif _G.POVc == 'Watch' then
-                workspace.CurrentCamera.CameraType = "Watch"
-            elseif _G.POVc == 'Attach' then
-                workspace.CurrentCamera.CameraType = "Track"
-            elseif _G.POVc == 'Custom' then
-                workspace.CurrentCamera.CameraType = "Custom"
-            elseif _G.POVc == 'Scriptable' then
-                workspace.CurrentCamera.CameraType = "Scriptable"
-            elseif _G.POVc == 'Orbital' then
-                workspace.CurrentCamera.CameraType = "Orbital"
             end
 end)
 v2:CreateButton("No Shake Camera", function()
   localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
 end)
-
 local v3 = PhantomForcesWindow:NewSection("Misc")
 v3:CreateButton("WalkSpeed", function()
 while wait() do
@@ -79,7 +69,8 @@ v3:CreateButton("No Cooldown Jump", function()
 game:GetService("UserInputService").JumpRequest:connect(function()
 if InfiniteJumpEnabled then
 game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-	end
+    end
+end)
 end)
 v3:CreateToggle("Fullbright",function(value)
 if value then
@@ -98,4 +89,9 @@ while _G.Drink do wait()
 game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
 end
 end)
+
+
+
+
+
 
