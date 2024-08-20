@@ -4,6 +4,38 @@ local Players = game:GetService('Players')
         local localplayer = Players.LocalPlayer
         local GuiService = game:GetService("GuiService")
         local Light = game:GetService("Lighting")
+function Simple_Create(base, name, trackername, studs)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local frame = Instance.new("Frame", bb)
+	frame.ZIndex = 10
+	frame.BackgroundTransparency = 0.3
+	frame.Size = UDim2.new(1, 0, 1, 0)
+	frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -48)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "ArialBold"
+	txtlbl.FontSize = "Size12"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(255, 0, 0)
+end
+
+function ClearESP(espname)
+	for _, v in pairs(game.CoreGui:GetChildren()) do
+		if v.Name == espname and v:isA("BillboardGui") then
+			v:Destroy()
+		end
+	end
+end
 local v0=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BLibrary%5D"))()
 local v1=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BThemeManager%5D"))()
 local v2=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BSaveManager%5D"))()
@@ -120,3 +152,37 @@ workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
 end
   end})
 
+v9 = v4:AddRightGroupbox("Visual")
+v9:AddToggle("",{
+	Text = "Bot ESP",
+	Callback = function(besp)
+		getgenv().botesp = besp
+		task.spawn(
+                function()
+			while task.wait() do
+				ClearESP('AI_Tracker')
+				if not getgenv().botesp then
+					break
+				end
+				pcall(function()
+					local GamePlayers = workspace.Game.Players
+					for i, v in pairs(GamePlayers:GetChildren()) do
+						if not game.Players:FindFirstChild(v.Name) then
+							Simple_Create(v.HumanoidRootPart, v.Name, "AI_Tracker")
+						end
+					end
+				end)
+			end
+		end
+            )
+	end
+	})
+v10 = v4:AddRightGroupbox("Timer")
+v10:AddToggle("",{
+Text = "Notify Timer",
+Callback=function(value)
+_G.Ti = value
+while _G.Ti do wait(1)			
+v0:Notify("Time is : ".. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text)
+			end				
+		end})
