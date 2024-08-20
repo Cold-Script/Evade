@@ -8,7 +8,7 @@ local PhantomForcesWindow = Library:NewWindow("⁠☆ YOUHUB ☆ | Evade")
 local v0 = PhantomForcesWindow:NewSection("Farm")
 v0:CreateToggle("AFK Farm",function(value)
 _G.AFK = value
-while _G.AFK do wait(0.3)
+while _G.AFK do wait()
 localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, 1500, 0)
 wait(0.15)
 localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(500, 1500, 500)
@@ -18,7 +18,7 @@ localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(-50
 end)
 local v1 = PhantomForcesWindow:NewSection("Respawn")
 
-v1:CreateButton("Respawn", function()
+v1:CreateButton("Respawn [ Downed Only ]", function()
 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end)
 v1:CreateToggle("Respawn On Downed",function(value)
