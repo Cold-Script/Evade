@@ -1,5 +1,9 @@
 _wait = task.wait
 _spawn = task.spawn
+local Players = game:GetService('Players')
+        local localplayer = Players.LocalPlayer
+        local GuiService = game:GetService("GuiService")
+        local Light = game:GetService("Lighting")
 local v0=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BLibrary%5D"))()
 local v1=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BThemeManager%5D"))()
 local v2=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BSaveManager%5D"))()
