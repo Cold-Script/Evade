@@ -80,7 +80,7 @@ Func = function()
 game:GetService("ReplicatedStorage").Events.ReturnToMenu:FireServer()
 	end    
 })
-v7:AddToggle({Text="Fullbright [ NoFog ]",Callback=function(value)
+v7:AddToggle("",{Text="Fullbright [ NoFog ]",Callback=function(value)
 if value then
 Light.Brightness = 3
 Light.GlobalShadows = false
