@@ -79,15 +79,18 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/
  end})
 
 
-v7:AddButton({Text="Disable Void ROBLOX",Func=function()
+v7:AddToggle("",{Text="Disable Void ROBLOX",Callback=function(value)
+_G.Vo = value			
+while _G.Vo do wait()			
       workspace.FallenPartsDestroyHeight = 0 / 0 -- otherwise known as nan! (a number below -math.huge)
+	end				
     end})
 
 
-v7:AddButton({Text="No Cooldown Jump",Func=function()
-  local InfiniteJumpEnabled = true
+v7:AddToggle("",{Text="Infinity Jumper",Callback=function(value)
+  local InfiniteJumpEnabled = value
 game:GetService("UserInputService").JumpRequest:connect(function()
-if InfiniteJumpEnabled then
+while InfiniteJumpEnabled do wait()
 game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
     end
       end)
