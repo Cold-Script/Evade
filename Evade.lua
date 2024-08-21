@@ -29,13 +29,7 @@ function Simple_Create(base, name, trackername, studs)
 	txtlbl.TextColor3 = Color3.fromRGB(255, 0, 0)
 end
 
-function ClearESP(espname)
-	for _, v in pairs(game.CoreGui:GetChildren()) do
-		if v.Name == espname and v:isA("BillboardGui") then
-			v:Destroy()
-		end
-	end
-end
+
 function Simple(base, name, trackername, studs)
 	local bb = Instance.new("BillboardGui", game.CoreGui)
 	bb.Adornee = base
@@ -61,13 +55,7 @@ function Simple(base, name, trackername, studs)
 	txtlbl.TextColor3 = Color3.fromRGB(125, 249, 255)
 end
 
-function ClearESP(clonesp)
-	for _, v in pairs(game.CoreGui:GetChildren()) do
-		if v.Name == clonesp and v:isA("BillboardGui") then
-			v:Destroy()
-		end
-	end
-end
+
 function Simple2(base, name, trackername, studs)
 	local bb = Instance.new("BillboardGui", game.CoreGui)
 	bb.Adornee = base
@@ -92,14 +80,14 @@ function Simple2(base, name, trackername, studs)
 	txtlbl.TextStrokeTransparency = 0.5
 	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
 end
-
-function ClearESP(espname2)
+function ClearESP(espname)
 	for _, v in pairs(game.CoreGui:GetChildren()) do
-		if v.Name == espname2 and v:isA("BillboardGui") then
+		if v.Name == espname and v:isA("BillboardGui") then
 			v:Destroy()
 		end
 	end
 end
+
 local v0=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BLibrary%5D"))()
 local v1=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BThemeManager%5D"))()
 local v2=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BSaveManager%5D"))()
@@ -287,11 +275,11 @@ v9:AddToggle("",{
 					break
 				end
 				pcall(function()
-					local GamePlayers = workspace:WaitForChild("Game", 1337)
+					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
-						if v.Name == "Players" then			
+									
 							Simple2(v.HumanoidRootPart,"" .. v.Name, "Player_ESP")
-							end				
+											
 					end
 				end)
 			end
