@@ -38,15 +38,11 @@ function Simple(base, name, trackername, studs)
 	bb.Size = UDim2.new(0, 6, 0, 6)
 	bb.StudsOffset = Vector3.new(0, 1, 0)
 	bb.Name = trackername
-	local frame = Instance.new("Frame", bb)
-	frame.ZIndex = 10
-	frame.BackgroundTransparency = 0.3
-	frame.Size = UDim2.new(1, 0, 1, 0)
-	frame.BackgroundColor3 = Color3.fromRGB(125, 249, 255)
+	
 	local txtlbl = Instance.new("TextLabel", bb)
 	txtlbl.ZIndex = 10
 	txtlbl.BackgroundTransparency = 1
-	txtlbl.Position = UDim2.new(0, 0, 0, -43)
+	txtlbl.Position = UDim2.new(0, 0, 0, -60)
 	txtlbl.Size = UDim2.new(1, 0, 10, 0)
 	txtlbl.Font = "ArialBold"
 	txtlbl.FontSize = "Size14"
