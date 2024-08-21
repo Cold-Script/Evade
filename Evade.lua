@@ -15,7 +15,7 @@ function Simple_Create(base, name, trackername, studs)
 	local frame = Instance.new("Frame", bb)
 	frame.ZIndex = 10
 	frame.BackgroundTransparency = 0.3
-	frame.Size = UDim2.new(3, 0, 3, 0)
+	frame.Size = UDim2.new(1, 0, 1, 0)
 	frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 	local txtlbl = Instance.new("TextLabel", bb)
 	txtlbl.ZIndex = 10
