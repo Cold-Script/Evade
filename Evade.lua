@@ -167,19 +167,14 @@ while _G.Drink do wait()
 game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
 end
   end})
-v8:AddToggle("",{Text="Auto Whistle",Callback=function(value)
+v8:AddToggle("",{Text="Auto Off Emotes [ 5 Second ]",Callback=function(value)
 _G.Whi = value
 while _G.Whi do wait()
 game:GetService("Players").LocalPlayer.PlayerScripts.Events.KeybindUsed:Fire("Whistle", true)
 game:GetService("ReplicatedStorage").Events.Whistle:FireServer()				
 end
   end})
-v8:AddToggle("",{Text="Auto Revive [ Near ]",Callback=function(value)
-_G.Re = value
-while _G.Re do wait()
-game:GetService("ReplicatedStorage").Events.Revive:FireServer()
-end
-  end})
+
 v8:AddToggle("",{Text="Fast Revive",Callback=function(value)
 if value then
 workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
@@ -272,9 +267,9 @@ v9:AddToggle("",{
 				end
 				pcall(function()
 					
-					for i, v in pairs(game:GetChildren()) do
+					for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
 									
-							Simple2(v.HumanoidRootPart,"" .. Players.LocalPlayer.Name, "Player_ESP")
+							Simple2(v.Humanoid,"" .. v.DisplayName, "Player_ESP")
 											
 					end
 				end)
