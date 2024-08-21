@@ -257,20 +257,20 @@ v9:AddToggle("",{
 v9:AddToggle("",{
 	Text = "Players ESP",
 	Callback = function(desp)
-		getgenv().playersesp = desp
+		getgenv().plresp = desp
 		task.spawn(
                 function()
 			while task.wait() do
-				ClearESP('Player_ESP')
-				if not getgenv().playersesp then
+				ClearESP('Players_ESP')
+				if not getgenv().plresp then
 					break
 				end
 				pcall(function()
-					
-					for i, v in pairs(game.Players:GetPlayers()) do
-									
-							Simple2(v.HumanoidRootPart,"" .. v.DisplayName, "Player_ESP")
-											
+					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
+					for i, v in pairs(GamePlayers:GetPlayers()) do
+						
+							Simple2(v.HumanoidRootPart, v.Name, "Players_ESP")
+						
 					end
 				end)
 			end
