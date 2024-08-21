@@ -76,6 +76,25 @@ function Simple2(base, name, trackername, studs)
 	txtlbl.TextStrokeTransparency = 0.5
 	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
 end
+function Simple3(base, name, trackername, studs)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -60)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "ArialBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(255, 0, 0)
+end
 function ClearESP(espname)
 	for _, v in pairs(game.CoreGui:GetChildren()) do
 		if v.Name == espname and v:isA("BillboardGui") then
@@ -209,6 +228,8 @@ v9:AddToggle("",{
 	Text = "NextBots & Players ESP",
 	Callback = function(besp)
 		getgenv().botesp = besp
+		getgenv().iaesp = besp
+		getgenv().plresp = besp	
 		task.spawn(
                 function()
 			while task.wait() do
@@ -221,20 +242,33 @@ v9:AddToggle("",{
 				if not getgenv().plresp then
 					break
 				end				
+				ClearESP('AI_Text')
+				if not getgenv().iaesp then
+					break
+				end		
+				pcall(function()
+					local GamePlayers = workspace.Game.Players
+					for i, v in pairs(GamePlayers:GetChildren()) do
+							Simple2(v.HumanoidRootPart, v.Name, "Player_ESP")
+					end
+				end)
 				pcall(function()
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if not game.Players:FindFirstChild(v.Name) then
-							Simple_Create(v.HumanoidRootPart, v.Name, "AI_Tracker")
+							Simple_Create(v.HumanoidRootPart,v.Name, "AI_Tracker")
 						end
 					end
 				end)
 				pcall(function()
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
-							Simple2(v.HumanoidRootPart, v.Name, "Player_ESP")
+						if not game.Players:FindFirstChild(v.Name) then
+							Simple_Create(v.HumanoidRootPart, "[ Artificial ]", "AI_Text")
+						end
 					end
-				end)			
+				end)		
+						
 			end
 		end
             )
@@ -266,31 +300,7 @@ v9:AddToggle("",{
 	end
 }
 )
-v9:AddToggle("",{
-	Text = "Players ESP",
-	Callback = function(desp)
-		getgenv().plresp = desp
-		task.spawn(
-                function()
-			while task.wait() do
-				ClearESP('Players_ESP')
-				if not getgenv().plresp then
-					break
-				end
-				pcall(function()
-					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
-					for i, v in pairs(GamePlayers:GetPlayers()) do
-						
-							Simple2(v.HumanoidRootPart, v.Name, "Players_ESP")
-						
-					end
-				end)
-			end
-		end
-            )
-	end
-}
-)
+
 v10 = v4:AddRightGroupbox("Timer")
 v10:AddToggle("",{
 Text = "Notify Timer",
