@@ -36,6 +36,38 @@ function ClearESP(espname)
 		end
 	end
 end
+function Simple(base, name, trackername, studs)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local frame = Instance.new("Frame", bb)
+	frame.ZIndex = 10
+	frame.BackgroundTransparency = 0.3
+	frame.Size = UDim2.new(1, 0, 1, 0)
+	frame.BackgroundColor3 = Color3.fromRGB(15, 255, 80)
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -48)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "ArialBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
+end
+
+function ClearESP(clonesp)
+	for _, v in pairs(game.CoreGui:GetChildren()) do
+		if v.Name == clonesp and v:isA("BillboardGui") then
+			v:Destroy()
+		end
+	end
+end
 local v0=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BLibrary%5D"))()
 local v1=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BThemeManager%5D"))()
 local v2=loadstring(game:HttpGet("https://raw.githubusercontent.com/Cold-Script/Gui/main/Gui%20Lib%20%5BSaveManager%5D"))()
@@ -186,6 +218,31 @@ v9:AddToggle("",{
             )
 	end
 	})
+v9:AddToggle("",{
+	Text = "Downed ESP",
+	Callback = function(desp)
+		getgenv().downesp = desp
+		task.spawn(
+                function()
+			while task.wait() do
+				ClearESP('Downed_ESP')
+				if not getgenv().downesp then
+					break
+				end
+				pcall(function()
+					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
+					for i, v in pairs(GamePlayers:GetChildren()) do
+						if v:GetAttribute('Downed') then
+							Simple(v.HumanoidRootPart, '[ Downed ] :' .. v.Name, "Downed_ESP")
+						end
+					end
+				end)
+			end
+		end
+            )
+	end
+}
+)
 v10 = v4:AddRightGroupbox("Timer")
 v10:AddToggle("",{
 Text = "Notify Timer",
