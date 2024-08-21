@@ -15,7 +15,7 @@ function Simple_Create(base, name, trackername, studs)
 	local frame = Instance.new("Frame", bb)
 	frame.ZIndex = 10
 	frame.BackgroundTransparency = 0.3
-	frame.Size = UDim2.new(1, 0, 1, 0)
+	frame.Size = UDim2.new(3, 0, 3, 0)
 	frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 	local txtlbl = Instance.new("TextLabel", bb)
 	txtlbl.ZIndex = 10
@@ -23,7 +23,7 @@ function Simple_Create(base, name, trackername, studs)
 	txtlbl.Position = UDim2.new(0, 0, 0, -48)
 	txtlbl.Size = UDim2.new(1, 0, 10, 0)
 	txtlbl.Font = "ArialBold"
-	txtlbl.FontSize = "Size12"
+	txtlbl.FontSize = "Size14"
 	txtlbl.Text = name
 	txtlbl.TextStrokeTransparency = 0.5
 	txtlbl.TextColor3 = Color3.fromRGB(255, 0, 0)
@@ -73,24 +73,21 @@ end
 end 
 end})
 v7 = v4:AddRightGroupbox("Misc")
-
-v7:AddButton({Text="Infinite yield [ AC ]",Func=function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
- end})
-
-
 v7:AddToggle("",{Text="Disable Void ROBLOX",Callback=function(value)
 _G.Vo = value			
 while _G.Vo do wait()			
       workspace.FallenPartsDestroyHeight = 0 / 0 -- otherwise known as nan! (a number below -math.huge)
 	end				
     end})
+v7:AddButton({Text="Infinite yield [ AC ]",Func=function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+ end})
 
 
-v7:AddToggle("",{Text="Infinity Jumper",Callback=function(value)
-  local InfiniteJumpEnabled = value
+v7:AddButton({Text="Infinity Jumper",Func=function(value)
+  local InfiniteJumpEnabled = trye
 game:GetService("UserInputService").JumpRequest:connect(function()
-while InfiniteJumpEnabled do wait()
+if InfiniteJumpEnabled then
 game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
     end
       end)
@@ -136,9 +133,10 @@ game:GetService("ReplicatedStorage").Events.Revive:FireServer()
 end
   end})
 v8:AddToggle("",{Text="Fast Revive",Callback=function(value)
-_G.FRe = value
-while _G.FRe do wait()
+if value then
 workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
+			else
+workspace.Game.Settings:SetAttribute("ReviveTime", 3)				
 end
   end})
 v8:AddToggle("",{Text="No Shake Camera",Callback=function(value)
