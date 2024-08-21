@@ -253,7 +253,7 @@ v9:AddToggle("",{
 					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if v:GetAttribute('Downed') then
-							Simple(v.HumanoidRootPart, '[ Downed ] : ' .. v.Name, "Downed_ESP")
+							Simple(v.HumanoidRootPart, '[ Downed ]', "Downed_ESP")
 						end
 					end
 				end)
