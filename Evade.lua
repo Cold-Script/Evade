@@ -48,6 +48,38 @@ function Simple(base, name, trackername, studs)
 	frame.ZIndex = 10
 	frame.BackgroundTransparency = 0.3
 	frame.Size = UDim2.new(1, 0, 1, 0)
+	frame.BackgroundColor3 = Color3.fromRGB(125, 249, 255)
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -48)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "ArialBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(125, 249, 255)
+end
+
+function ClearESP(clonesp)
+	for _, v in pairs(game.CoreGui:GetChildren()) do
+		if v.Name == clonesp and v:isA("BillboardGui") then
+			v:Destroy()
+		end
+	end
+end
+function Simple2(base, name, trackername, studs)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local frame = Instance.new("Frame", bb)
+	frame.ZIndex = 10
+	frame.BackgroundTransparency = 0.3
+	frame.Size = UDim2.new(1, 0, 1, 0)
 	frame.BackgroundColor3 = Color3.fromRGB(15, 255, 80)
 	local txtlbl = Instance.new("TextLabel", bb)
 	txtlbl.ZIndex = 10
@@ -61,9 +93,9 @@ function Simple(base, name, trackername, studs)
 	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
 end
 
-function ClearESP(clonesp)
+function ClearESP(espname)
 	for _, v in pairs(game.CoreGui:GetChildren()) do
-		if v.Name == clonesp and v:isA("BillboardGui") then
+		if v.Name == espname and v:isA("BillboardGui") then
 			v:Destroy()
 		end
 	end
@@ -233,8 +265,31 @@ v9:AddToggle("",{
 					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if v:GetAttribute('Downed') then
-							Simple(v.HumanoidRootPart, '[ Downed ] :' .. v.Name, "Downed_ESP")
+							Simple(v.HumanoidRootPart, '[ Downed ] : ' .. v.Name, "Downed_ESP")
 						end
+					end
+				end)
+			end
+		end
+            )
+	end
+}
+)
+v9:AddToggle("",{
+	Text = "Players ESP",
+	Callback = function(desp)
+		getgenv().playersesp = desp
+		task.spawn(
+                function()
+			while task.wait() do
+				ClearESP('Player_ESP')
+				if not getgenv().playersesp then
+					break
+				end
+				pcall(function()
+					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
+					for i, v in pairs(GamePlayers:GetChildren()) do
+							Simple2(v.HumanoidRootPart, .. v.Name, "Player_ESP")
 					end
 				end)
 			end
@@ -248,7 +303,7 @@ v10:AddToggle("",{
 Text = "Notify Timer",
 Callback = function(value)
 _G.Ti = value
-while _G.Ti do wait(1)			
+while _G.Ti do wait(0.95)			
 v0:Notify("[ YOU HUB ] : Time is : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text)
 			end				
 		end})
