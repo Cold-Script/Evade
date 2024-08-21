@@ -93,9 +93,9 @@ function Simple2(base, name, trackername, studs)
 	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
 end
 
-function ClearESP(espname)
+function ClearESP(espname2)
 	for _, v in pairs(game.CoreGui:GetChildren()) do
-		if v.Name == espname and v:isA("BillboardGui") then
+		if v.Name == espname2 and v:isA("BillboardGui") then
 			v:Destroy()
 		end
 	end
@@ -290,7 +290,7 @@ v9:AddToggle("",{
 					local GamePlayers = workspace:WaitForChild("Game", 1337)
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if v.Name == "Players" then			
-							Simple2(v.HumanoidRootPart, .. v.Name, "Player_ESP")
+							Simple2(v.HumanoidRootPart,"" .. v.Name, "Player_ESP")
 							end				
 					end
 				end)
