@@ -271,10 +271,10 @@ v9:AddToggle("",{
 					break
 				end
 				pcall(function()
-					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
-					for i, v in pairs(GamePlayers:GetChildren()) do
+					
+					for i, v in pairs(game:GetChildren()) do
 									
-							Simple2(v.HumanoidRootPart,"" .. v.Name, "Player_ESP")
+							Simple2(v.HumanoidRootPart,"" .. Players.LocalPlayer.Name, "Player_ESP")
 											
 					end
 				end)
