@@ -206,7 +206,7 @@ while _G.Day do wait()
   end})
 v9 = v4:AddRightGroupbox("Visual")
 v9:AddToggle("",{
-	Text = "Bot ESP",
+	Text = "NextBots & Players ESP",
 	Callback = function(besp)
 		getgenv().botesp = besp
 		task.spawn(
@@ -216,6 +216,11 @@ v9:AddToggle("",{
 				if not getgenv().botesp then
 					break
 				end
+			
+				ClearESP('Player_ESP')
+				if not getgenv().plresp then
+					break
+				end				
 				pcall(function()
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
@@ -224,11 +229,18 @@ v9:AddToggle("",{
 						end
 					end
 				end)
+				pcall(function()
+					local GamePlayers = workspace.Game.Players
+					for i, v in pairs(GamePlayers:GetChildren()) do
+							Simple2(v.HumanoidRootPart, v.Name, "Player_ESP")
+					end
+				end)			
 			end
 		end
             )
 	end
 	})
+
 v9:AddToggle("",{
 	Text = "Downed ESP",
 	Callback = function(desp)
