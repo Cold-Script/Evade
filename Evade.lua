@@ -267,9 +267,9 @@ v9:AddToggle("",{
 				end
 				pcall(function()
 					
-					for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+					for i, v in pairs(game.Players:GetPlayers()) do
 									
-							Simple2(v.Humanoid,"" .. v.DisplayName, "Player_ESP")
+							Simple2(v.HumanoidRootPart,"" .. v.DisplayName, "Player_ESP")
 											
 					end
 				end)
