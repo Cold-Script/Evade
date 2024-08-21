@@ -113,7 +113,7 @@ local v3 = v0:CreateWindow({
     TabPadding=5,
     MenuFadeTime=0.2
   })
-v4 = v3:AddTab("Explosion")
+v4 = v3:AddTab("Main")
 v5 = v4:AddLeftGroupbox("Farm")
 
 v5:AddToggle("",{Text="AFK Farm",Callback=function(value)
