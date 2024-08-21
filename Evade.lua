@@ -264,7 +264,7 @@ v9:AddToggle("",{
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if not game.Players:FindFirstChild(v.Name) then
-							Simple_Create(v.HumanoidRootPart, "[ Artificial ]", "AI_Text")
+							Simple3(v.HumanoidRootPart, "[ Artificial ]", "AI_Text")
 						end
 					end
 				end)		
