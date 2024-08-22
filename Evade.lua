@@ -250,14 +250,14 @@ v9:AddToggle("",{
 				pcall(function()
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
-							Simple2(v.UpperTorso, v.Name, "Player_ESP")
+							Simple2(v.HumanoidRootPart, v.Name, "Player_ESP")
 					end
 				end)
 				pcall(function()
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if not game.Players:FindFirstChild(v.Name) then
-							Simple_Create(v.UpperTorso,v.Name, "AI_Tracker")
+							Simple_Create(v.HumanoidRootPart,v.Name, "AI_Tracker")
 						end
 					end
 				end)
@@ -265,7 +265,7 @@ v9:AddToggle("",{
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if not game.Players:FindFirstChild(v.Name) then
-							Simple3(v.UpperTorso, "[ Artificial ]", "AI_Text")
+							Simple3(v.HumanoidRootPart, "[ Artificial ]", "AI_Text")
 						end
 					end
 				end)		
@@ -291,7 +291,7 @@ v9:AddToggle("",{
 					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if v:GetAttribute('Downed') then
-							Simple(v.UpperTorso, '[ Downed ]', "Downed_ESP")
+							Simple(v.HumanoidRootPart, '[ Downed ]', "Downed_ESP")
 						end
 					end
 				end)
