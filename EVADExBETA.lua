@@ -69,5 +69,54 @@ _G.Drink = value
 while _G.Drink do wait()
 game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
 end
-  end})
-
+end})
+Tabs.Main:AddSection("Misc")
+Tabs.Main:AddToggle("Fullbright",{
+	Title = "Fullbright",
+	Description = "Brightness Screen Players",
+	Callback=function(value)
+if value then
+game.Lighting.Brightness = 2
+game.Lighting.GlobalShadows = false
+game.Lighting.OutdoorAmbient = Color3.new(1,1,1)
+else				
+game.Lighting.Brightness = 2
+game.Lighting.GlobalShadows = true
+game.Lighting.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
+end
+end})
+Tabs.Main:AddToggle("NoFog",{
+	Title = "Fog Remover",
+	Description = "Fog Remover",
+	Callback=function(value)
+if value then
+game.Lighting.FogStart = 0
+game.Lighting.FogEnd = 9e9				
+else
+game.Lighting.FogStart = 100			
+game.Lighting.FogEnd = 200
+end
+end})
+Tabs.Main:AddToggle("FastRevive",{
+	Title = "Fast Reviver",
+	Description = "Revive all Players Fast",
+	Callback=function(value)
+if value then
+workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
+			else
+workspace.Game.Settings:SetAttribute("ReviveTime", 3)				
+end
+end})
+Tabs.Main:AddToggle("BarrierDisabled",{
+	Title = "Disabled Barrier",
+	Description = "Disabled Invisible Parts",
+	Callback=function(value)
+_G.ReIn = value
+while _G.ReIn do wait()			
+for _,v in pairs(workspace.Game.Map:GetDescendants()) do
+if v.Name == "InvisParts" then
+v:Destroy()
+end
+end
+end				
+end})
