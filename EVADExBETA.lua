@@ -15,17 +15,17 @@ function ESP(base, name, trackername)
 	frame.ZIndex = 10
 	frame.BackgroundTransparency = 0.3
 	frame.Size = UDim2.new(1, 0, 1, 0)
-	frame.BackgroundColor3 = Color3.fromRGB(125, 249, 255)
+	frame.BackgroundColor3 = Color3.fromRGB(50, 255, 175)
 	local txtlbl = Instance.new("TextLabel", bb)
 	txtlbl.ZIndex = 10
 	txtlbl.BackgroundTransparency = 1
-	txtlbl.Position = UDim2.new(0, 0, 0, -60)
+	txtlbl.Position = UDim2.new(0, 0, 0, -48)
 	txtlbl.Size = UDim2.new(1, 0, 10, 0)
 	txtlbl.Font = "GothamBold"
 	txtlbl.FontSize = "Size14"
 	txtlbl.Text = name
 	txtlbl.TextStrokeTransparency = 0.5
-	txtlbl.TextColor3 = Color3.fromRGB(125, 249, 255)
+	txtlbl.TextColor3 = Color3.fromRGB(50, 255, 175)
 end
 function ESP2(base, name, trackername)
 	local bb = Instance.new("BillboardGui", game.CoreGui)
@@ -87,7 +87,7 @@ function ESP4(base, name, trackername)
 	txtlbl.FontSize = "Size14"
 	txtlbl.Text = name
 	txtlbl.TextStrokeTransparency = 0.5
-	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
+	txtlbl.TextColor3 = Color3.fromRGB(100, 255, 255)
 end
 function ClearESP(espname)
 	for _, v in pairs(game.CoreGui:GetChildren()) do
@@ -96,6 +96,12 @@ function ClearESP(espname)
 		end
 	end
 end
+_spawn = task.spawn
+_spawn(function()
+while _G.AFK do wait()
+localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(_G.C1, _G.C2, _G.C3)
+end
+end)		
 local Window = Fluent:CreateWindow({
     Title = "YOUHUB | Evade v" .. v ,
     SubTitle = "by white7777",
@@ -117,6 +123,41 @@ local Tabs = {
     Cheat = Window:AddTab({ Title = "Visual", Icon = "anchor" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" }),
 }
+Tabs.Main:AddSection("Farm")
+
+Tabs.Main:AddToggle("AFK",{
+	Title = "AFK Farm < Settings >",
+	Description = "Teleport Far",
+	Callback=function(value)
+_G.AFK = value
+end})
+Tabs.Main:AddDropdown("SelectX", {
+        Title = "Position X",
+	Description = "Position X",
+        Values = {"-5000", "-2500", "0", "2500", "5000"},
+        Multi = false,
+        Default = 1,
+	Callback = function(value)
+_G.C1 = value			
+end})
+Tabs.Main:AddDropdown("SelectY", {
+        Title = "Position Y",
+	Description = "Position Y",
+        Values = {"250", "500", "750", "1000", "1250", "1500"},
+        Multi = false,
+        Default = 1,
+	Callback = function(value)
+_G.C2 = value			
+end})
+Tabs.Main:AddDropdown("SelectZ", {
+        Title = "Position Z",
+	Description = "Position Z",
+        Values = {"-5000", "-2500", "0", "2500", "5000"},
+        Multi = false,
+        Default = 1,
+	Callback = function(value)
+_G.C3 = value			
+end})
 Tabs.Main:AddSection("Players")
 Tabs.Main:AddButton({
         Title = "Respawn",
@@ -138,7 +179,7 @@ end
 end})
 Tabs.Main:AddToggle("Whistle",{
 	Title = "Auto Whistle & Stop Emote",
-	Description = "Stop Emote in 5 Second & Auto Whistle",
+	Description = "Stop Emote & Auto Whistle",
 	Callback=function(value)
 _G.Whi = value
 while _G.Whi do wait()
@@ -214,7 +255,7 @@ end
 end
 end				
 end})
-Tabs.Cheat:AddSection("Timer")
+Tabs.Main:AddSection("Timer")
 Tabs.Main:AddButton({
         Title = "Day",
         Description = "Time bright",
@@ -309,7 +350,7 @@ Tabs.Cheat:AddToggle("DownedESP",{
 					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if v:GetAttribute('Downed') then
-							ESP4(v.HumanoidRootPart, '[ Downed ]', "Downed_ESP")
+							ESP4(v.HumanoidRootPart, '< Downed > ', "Downed_ESP")
 						end
 					end
 				end)
@@ -318,7 +359,7 @@ Tabs.Cheat:AddToggle("DownedESP",{
             )
 	end
 	})
-Tabs.Cheat:AddSection("Anti")
+Tabs.Cheat:AddSection("Anti & Disable Entity")
 Tabs.Cheat:AddToggle("AntiVoid",{
 	Title = "Anti Void ROBLOX",
 	Description = "Void of ROBLOC Cant Kill you",
