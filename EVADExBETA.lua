@@ -96,12 +96,7 @@ function ClearESP(espname)
 		end
 	end
 end
-_spawn = task.spawn
-_spawn(function()
-while _G.AFK do wait()
-game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(_G.C1, _G.C2, _G.C3)
-end
-end)		
+	
 local Window = Fluent:CreateWindow({
     Title = "YOUHUB | Evade v" .. v ,
     SubTitle = "by white7777",
@@ -130,6 +125,9 @@ Tabs.Main:AddToggle("AFK",{
 	Description = "Teleport Far",
 	Callback=function(value)
 _G.AFK = value
+while _G.AFK do wait()
+game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(_G.C1, _G.C2, _G.C3)
+end	
 end})
 Tabs.Main:AddDropdown("SelectX", {
         Title = "Position X",
