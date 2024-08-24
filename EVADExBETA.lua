@@ -43,10 +43,31 @@ end
 end 
 end})
 Tabs.Main:AddToggle("Whistle",{
-	Text="Auto Whistle & Stop Emote",Callback=function(value)
+	Title = "Auto Whistle & Stop Emote",
+	Description = "Stop Emote in 5 Second & Auto Whistle",
+	Callback=function(value)
 _G.Whi = value
 while _G.Whi do wait()
 game:GetService("Players").LocalPlayer.PlayerScripts.Events.KeybindUsed:Fire("Whistle", true)
 game:GetService("ReplicatedStorage").Events.Whistle:FireServer()				
 end
   end})
+Tabs.Main:AddToggle("NoShakeCam",{
+	Title = "Auto No Shake Camera",
+	Description = "Auto No Shake Camera",
+	Callback=function(value)
+_G.NoC = value			
+while _G.NoC do wait()			
+  game.Players.LocalPlayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
+end				
+end})
+Tabs.Main:AddToggle("AutoCola",{
+	Title = "Auto Drink Cola",
+	Description = "Drink Cola (Can Complete Quest)",
+	Callback=function(value)
+_G.Drink = value
+while _G.Drink do wait()
+game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
+end
+  end})
+
