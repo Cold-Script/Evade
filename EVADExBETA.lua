@@ -1,72 +1,104 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-local v = 1.2
-local function billboard(child, name, tracker)
-    local billboard_gui = Instance.new("BillboardGui")
-    billboard_gui.Active = true
-    billboard_gui.AlwaysOnTop = true
-    billboard_gui.ClipsDescendants = true
-    billboard_gui.LightInfluence = 1
-    billboard_gui.Size = UDim2.new(3, 0, 2, 0)
-    billboard_gui.ResetOnSpawn = false
-    billboard_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    billboard_gui.Parent = child
-    billboard_gui.Name = tracker
-    local text_label = Instance.new("TextLabel")
-    text_label.Font = Enum.Font.ArialBold
-    text_label.Text = name
-    text_label.TextScaled = true
-	text_label.TextSize = 10
-	text_label.TextWrapped = true
-    text_label.BackgroundColor3 = Color3.new(1, 1, 1)
-    text_label.BackgroundTransparency = 1
-    text_label.BorderColor3 = Color3.new(0, 0, 0)
-    text_label.BorderSizePixel = 0
-    text_label.Size = UDim2.new(1, 0, 1, 0)
-    text_label.Visible = true
-    text_label.Parent = billboard_gui
-    local uistroke = Instance.new("UIStroke")
-    uistroke.Thickness = 1
-    uistroke.Parent = text_label
-    spawn(function()
-    while task.wait() do
-    local hue = tick() % 5 / 5
-    local color = Color3.fromHSV(hue, 1, 1)
-    text_label.TextColor3 = color
-    end
-    end)
-    end
-    local function selection(child, name, tracker)
-    billboard(child, name, tracker)
-    local hi = Instance.new("Highlight")
-    hi.Parent = child
-    hi.Adornee = child
-    hi.OutlineColor = Color3.fromRGB(161, 0, 0)
-    hi.FillColor = Color3.fromRGB(255, 0, 0)
-    hi.FillTransparency = 0.75
-    hi.Name = tracker
-    spawn(function()
-    while task.wait() do
-    if hi then
-    local hue = tick() % 5 / 5
-    local color = Color3.fromHSV(hue, 1, 1)
-    hi.OutlineColor = color
-    hi.FillColor = color
-    end
-    end
-    end)
-    end
+local v = v1.2
+
+function ESP(base, name, trackername)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local frame = Instance.new("Frame", bb)
+	frame.ZIndex = 10
+	frame.BackgroundTransparency = 0.3
+	frame.Size = UDim2.new(1, 0, 1, 0)
+	frame.BackgroundColor3 = Color3.fromRGB(15, 255, 80)
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -60)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "GothamBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(125, 249, 255)
+end
+function ESP2(base, name, trackername)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local frame = Instance.new("Frame", bb)
+	frame.ZIndex = 10
+	frame.BackgroundTransparency = 0.3
+	frame.Size = UDim2.new(1, 0, 1, 0)
+	frame.BackgroundColor3 = Color3.fromRGB(15, 255, 80)
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -48)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "GothamBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
+end
+function ESP3(base, name, trackername)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -60)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "GothamBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(255, 0, 0)
+end
+function ESP4(base, name, trackername)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -60)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "ArialBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(125, 249, 255)
+end
 function ClearESP(espname)
-	for _, v in pairs(child:GetChildren()) do
-		if v.Name == espname and v:isA("BillboardGui") or v:IsA("Highlight") then
+	for _, v in pairs(game.CoreGui:GetChildren()) do
+		if v.Name == espname and v:isA("BillboardGui") then
 			v:Destroy()
 		end
 	end
 end
 local Window = Fluent:CreateWindow({
-    Title = "Evade" .. v ,
-    SubTitle = "YOUHUB",
+    Title = "YOUHUB | Evade " .. v ,
+    SubTitle = "by white7777",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true,
@@ -74,7 +106,7 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.LeftControl
 })
 Fluent:Notify({
-    Title = "Evade" .. v,
+    Title = "Evade " .. v,
     Content = "[LeftControl] Toggle GUI (Toggle)",
     Duration = 5
 })
@@ -182,11 +214,18 @@ end
 end
 end				
 end})
-Tabs.Cheat:AddToggle("NextbotsPlayersEsp",{
-	Title = "NextBots & Players ESP",
-	Description = "NextBots & Players ESP",
+task.spawn(function()
+while wait() do
+Tabs.Cheat:AddSection("Round Time : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text)
+		end
+	end)
+Tabs.Cheat:AddSection("ESP")
+Tabs.Cheat:AddToggle("NxPESP",{
+	Title = "Bots & Players ESP",
+	Description = "Bots & Players ESP",
 	Callback = function(besp)
 		getgenv().botesp = besp
+		getgenv().iaesp = besp
 		getgenv().plresp = besp	
 		task.spawn(
                 function()
@@ -200,25 +239,70 @@ Tabs.Cheat:AddToggle("NextbotsPlayersEsp",{
 				if not getgenv().plresp then
 					break
 				end				
-				
+				ClearESP('AI_Text')
+				if not getgenv().iaesp then
+					break
+				end		
 				pcall(function()
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
-							selection(v.HumanoidRootPart, v.Name, "Player_ESP")
+							ESP(v.HumanoidRootPart, v.Name, "Player_ESP")
 					end
 				end)
 				pcall(function()
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if not game.Players:FindFirstChild(v.Name) then
-							selection(v ,v.Name, "AI_Tracker")
+							ESP2(v.HumanoidRootPart,v.Name, "AI_Tracker")
 						end
 					end
 				end)
-				
+				pcall(function()
+					local GamePlayers = workspace.Game.Players
+					for i, v in pairs(GamePlayers:GetChildren()) do
+						if not game.Players:FindFirstChild(v.Name) then
+							ESP3(v.HumanoidRootPart, "[ Artificial ]", "AI_Text")
+						end
+					end
+				end)		
 						
 			end
 		end
             )
 	end
 	})
+Tabs.Cheat:AddToggle("DownedESP",{
+	Title = "Downed ESP",
+	Description = "Downed ESP",
+	Callback = function(desp)
+		getgenv().downesp = desp
+		task.spawn(
+                function()
+			while task.wait() do
+				ClearESP('Downed_ESP')
+				if not getgenv().downesp then
+					break
+				end
+				pcall(function()
+					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
+					for i, v in pairs(GamePlayers:GetChildren()) do
+						if v:GetAttribute('Downed') then
+							ESP4(v.HumanoidRootPart, '[ Downed ]', "Downed_ESP")
+						end
+					end
+				end)
+			end
+		end
+            )
+	end
+	})
+Tabs.Cheat:AddSection("Anti")
+Tabs.Cheat:AddToggle("",{
+	Title = "Anti Void ROBLOX",
+	Description = "Void of ROBLOC Cant Kill you",
+	Callback=function(value)
+_G.Vo = value			
+while _G.Vo do wait()			
+      workspace.FallenPartsDestroyHeight = 0 / 0 -- otherwise known as nan! (a number below -math.huge)
+	end				
+    end})
