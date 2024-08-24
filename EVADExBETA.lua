@@ -214,11 +214,20 @@ end
 end
 end				
 end})
-task.spawn(function()
-while wait() do
-Tabs.Cheat:AddSection("Round Time : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text)
-		end
-	end)
+Tabs.Main:AddToggle("TimerRound",{
+Title = "Round Notify Timer",
+Description = "Warning Round Timer",
+Callback = function(value)
+_G.Ti = value
+while _G.Ti do wait(1)			
+Fluent:Notify({
+	Title = "Round Time is : ",
+	Content = game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text),
+	Duration = 1
+})					
+			end				
+		end})
+
 Tabs.Cheat:AddSection("ESP")
 Tabs.Cheat:AddToggle("NxPESP",{
 	Title = "Bots & Players ESP",
@@ -297,7 +306,7 @@ Tabs.Cheat:AddToggle("DownedESP",{
 	end
 	})
 Tabs.Cheat:AddSection("Anti")
-Tabs.Cheat:AddToggle("",{
+Tabs.Cheat:AddToggle("AntiVoid",{
 	Title = "Anti Void ROBLOX",
 	Description = "Void of ROBLOC Cant Kill you",
 	Callback=function(value)
