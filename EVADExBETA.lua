@@ -15,7 +15,7 @@ function ESP(base, name, trackername)
 	frame.ZIndex = 10
 	frame.BackgroundTransparency = 0.3
 	frame.Size = UDim2.new(1, 0, 1, 0)
-	frame.BackgroundColor3 = Color3.fromRGB(15, 255, 80)
+	frame.BackgroundColor3 = Color3.fromRGB(125, 249, 255)
 	local txtlbl = Instance.new("TextLabel", bb)
 	txtlbl.ZIndex = 10
 	txtlbl.BackgroundTransparency = 1
@@ -39,7 +39,7 @@ function ESP2(base, name, trackername)
 	frame.ZIndex = 10
 	frame.BackgroundTransparency = 0.3
 	frame.Size = UDim2.new(1, 0, 1, 0)
-	frame.BackgroundColor3 = Color3.fromRGB(15, 255, 80)
+	frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 	local txtlbl = Instance.new("TextLabel", bb)
 	txtlbl.ZIndex = 10
 	txtlbl.BackgroundTransparency = 1
@@ -49,7 +49,7 @@ function ESP2(base, name, trackername)
 	txtlbl.FontSize = "Size14"
 	txtlbl.Text = name
 	txtlbl.TextStrokeTransparency = 0.5
-	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
+	txtlbl.TextColor3 = Color3.fromRGB(255, 0, 0)
 end
 function ESP3(base, name, trackername)
 	local bb = Instance.new("BillboardGui", game.CoreGui)
@@ -87,7 +87,7 @@ function ESP4(base, name, trackername)
 	txtlbl.FontSize = "Size14"
 	txtlbl.Text = name
 	txtlbl.TextStrokeTransparency = 0.5
-	txtlbl.TextColor3 = Color3.fromRGB(125, 249, 255)
+	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
 end
 function ClearESP(espname)
 	for _, v in pairs(game.CoreGui:GetChildren()) do
