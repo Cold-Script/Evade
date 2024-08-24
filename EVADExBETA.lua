@@ -99,7 +99,7 @@ end
 _spawn = task.spawn
 _spawn(function()
 while _G.AFK do wait()
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(_G.C1, _G.C2, _G.C3)
+game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(_G.C1, _G.C2, _G.C3)
 end
 end)		
 local Window = Fluent:CreateWindow({
@@ -256,27 +256,38 @@ end
 end				
 end})
 Tabs.Main:AddSection("Timer")
-Tabs.Main:AddButton({
-        Title = "Day",
-        Description = "Time bright",
-        Callback = function()
-game.Lighting.ClockTime = 14
+Tabs.Main:AddDropdown("ClockTime", {
+        Title = "ClockTime : ",
+        Values = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"},
+        Multi = false,
+        Default = 12,
+	Callback = function(value)
+_G.ClockTime = value			
 end})
+Tabs.Main:AddToggle("AutoTime",{
+	Title = "Auto Time Select",
+	Description = "Auto Set Time",
+	Callback=function(value)
+_G.AutoTime = value			
+while _G.AutoTime do wait()			
+      game.Lighting.ClockTime = _G.ClockTime
+	end				
+    end})
 Tabs.Main:AddButton({
-        Title = "Night",
-        Description = "Time Darkness",
+        Title = "Enabled Time",
+        Description = "Get Time Select",
         Callback = function()
-game.Lighting.ClockTime = 22
+game.Lighting.ClockTime = _G.ClockTime
 end})
 Tabs.Main:AddToggle("TimerRound",{
-Title = "Round Notify Timer",
-Description = "Warning Round Timer",
+Title = "Round Notify Timer < Play >",
+Description = "Nofitication Round Timer",
 Callback = function(value)
 _G.Ti = value
 while _G.Ti do wait(1)			
 Fluent:Notify({
 	Title = "YOUHUB | Evade v" .. v,
-	Content = "Round Time : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text,
+	Content = "Round Time : < " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text .. " >",
 	Duration = 1
 })					
 			end				
@@ -362,11 +373,29 @@ Tabs.Cheat:AddToggle("DownedESP",{
 Tabs.Cheat:AddSection("Anti & Disable Entity")
 Tabs.Cheat:AddToggle("AntiVoid",{
 	Title = "Anti Void ROBLOX",
-	Description = "Void of ROBLOC Cant Kill you",
+	Description = "Void of ROBLOX Cant Kill you",
 	Callback=function(value)
 _G.Vo = value			
 while _G.Vo do wait()			
       workspace.FallenPartsDestroyHeight = 0 / 0 -- otherwise known as nan! (a number below -math.huge)
+	end				
+    end})
+Tabs.Cheat:AddToggle("AntiLava",{
+	Title = "Disabled Lava",
+	Description = "Lava has remover",
+	Callback=function(value)
+_G.La = value			
+while _G.La do wait()			
+      workspace.Lava:Destroy()
+	end				
+    end})
+Tabs.Cheat:AddToggle("AntiKillbick",{
+	Title = "Disabled Killbrick",
+	Description = "Killbrick has remover",
+	Callback=function(value)
+_G.Killbrick = value			
+while _G.Killbrick do wait()			
+      workspace.Killbrick:Destroy()
 	end				
     end})
 SaveManager:SetLibrary(Fluent)
