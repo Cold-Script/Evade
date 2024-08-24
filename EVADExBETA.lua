@@ -1,7 +1,7 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-local v = v1.2
+local v = 1.2
 
 function ESP(base, name, trackername)
 	local bb = Instance.new("BillboardGui", game.CoreGui)
@@ -83,7 +83,7 @@ function ESP4(base, name, trackername)
 	txtlbl.BackgroundTransparency = 1
 	txtlbl.Position = UDim2.new(0, 0, 0, -60)
 	txtlbl.Size = UDim2.new(1, 0, 10, 0)
-	txtlbl.Font = "ArialBold"
+	txtlbl.Font = "GothamBold"
 	txtlbl.FontSize = "Size14"
 	txtlbl.Text = name
 	txtlbl.TextStrokeTransparency = 0.5
@@ -97,7 +97,7 @@ function ClearESP(espname)
 	end
 end
 local Window = Fluent:CreateWindow({
-    Title = "YOUHUB | Evade " .. v ,
+    Title = "YOUHUB | Evade v" .. v ,
     SubTitle = "by white7777",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
@@ -106,7 +106,7 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.LeftControl
 })
 Fluent:Notify({
-    Title = "Evade " .. v,
+    Title = "YOUHUB | Evade v" .. v,
     Content = "[LeftControl] Toggle GUI (Toggle)",
     Duration = 5
 })
@@ -214,6 +214,19 @@ end
 end
 end				
 end})
+Tabs.Cheat:AddSection("Timer")
+Tabs.Main:AddButton({
+        Title = "Day",
+        Description = "Time bright",
+        Callback = function()
+game.Lighting.ClockTime = 14
+end})
+Tabs.Main:AddButton({
+        Title = "Night",
+        Description = "Time Darkness",
+        Callback = function()
+game.Lighting.ClockTime = 22
+end})
 Tabs.Main:AddToggle("TimerRound",{
 Title = "Round Notify Timer",
 Description = "Warning Round Timer",
@@ -221,8 +234,8 @@ Callback = function(value)
 _G.Ti = value
 while _G.Ti do wait(1)			
 Fluent:Notify({
-	Title = "Round Time is : ",
-	Content = game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text),
+	Title = "YOUHUB | Evade v" .. v,
+	Content = "Round Time : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text,
 	Duration = 1
 })					
 			end				
