@@ -302,15 +302,17 @@ Tabs.Cheat:AddToggle("NxPESP",{
 		task.spawn(
                 function()
 			while task.wait() do
+				ClearESP('Player_ESP')
+				if not getgenv().plresp then
+					break
+				end
+						
 				ClearESP('AI_Tracker')
 				if not getgenv().botesp then
 					break
 				end
 			
-				ClearESP('Player_ESP')
-				if not getgenv().plresp then
-					break
-				end				
+						
 				ClearESP('AI_Text')
 				if not getgenv().iaesp then
 					break
@@ -368,7 +370,7 @@ Tabs.Cheat:AddToggle("DownedESP",{
             )
 	end
 	})
-Tabs.Cheat:AddSection("Anti & Disable Entity")
+Tabs.Cheat:AddSection("Anti & Disable")
 Tabs.Cheat:AddToggle("AntiVoid",{
 	Title = "Anti Void ROBLOX",
 	Description = "Void of ROBLOX Cant Kill you",
@@ -396,6 +398,16 @@ while _G.Killbrick do wait()
       workspace.Killbrick:Destroy()
 	end				
     end})
+Tabs.Cheat:AddToggle("AntiAFK",{
+	Title = "Anti AFK", 
+	Description = "Anti AFK", 
+	Callback=function(Value)
+	Settings.AntiAFK = Value
+      if Settings.AntiAFK then
+        game:GetService("VirtualUser"):CaptureController()
+        game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+			end
+end})
 SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
 SaveManager:IgnoreThemeSettings()
