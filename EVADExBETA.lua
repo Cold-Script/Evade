@@ -141,9 +141,9 @@ end})
 Tabs.Main:AddDropdown("SelectY", {
         Title = "Position Y",
 	Description = "Position Y",
-        Values = {"250", "500", "750", "1000", "1250", "1500"},
+        Values = {"3000", "6000", "9000", "12000", "15000", "100000"},
         Multi = false,
-        Default = 1,
+        Default = 4,
 	Callback = function(value)
 _G.C2 = value			
 end})
@@ -157,6 +157,18 @@ Tabs.Main:AddDropdown("SelectZ", {
 _G.C3 = value			
 end})
 Tabs.Main:AddSection("Players")
+Tabs.Main:AddToggle("Speed",{
+        Title = "Speed",
+	Description = "Boost Speed",	
+	Callback = function(value)
+game:GetService("RunService").RenderStepped:Connect(function()
+			pcall(function()
+				if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+					game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * 100/100)
+				end
+			end)
+		end)
+	end})			
 Tabs.Main:AddButton({
         Title = "Respawn",
         Description = "In Main Menu Click To Playing",
@@ -165,9 +177,8 @@ game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end})
 Tabs.Main:AddToggle("Respawn",{
         Title = "Respawn On Downed",
-	Default = false,
 	Description = "When Downed Auto Respawn",	
-	Callback=function(value)
+	Callback = function(value)
 _G.Rep = value
 while _G.Rep do wait()
 if game.Players.LocalPlayer.Character:GetAttribute("Downed") then
