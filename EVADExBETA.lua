@@ -103,7 +103,7 @@ local Window = Fluent:CreateWindow({
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true,
-    Theme = "Dark",
+    Theme = "Darker",
     MinimizeKey = Enum.KeyCode.LeftControl
 })
 Fluent:Notify({
@@ -307,11 +307,10 @@ Tabs.Cheat:AddToggle("NxPESP",{
 	Title = "Bots & Players ESP",
 	Description = "Bots & Players ESP",
 	Callback = function(besp)
+		getgenv().plresp = besp	
 		getgenv().botesp = besp
 		getgenv().iaesp = besp
-		getgenv().plresp = besp	
-		task.spawn(
-                function()
+		task.spawn(function()
 			while task.wait() do
 				ClearESP('Player_ESP')
 				if not getgenv().plresp then
