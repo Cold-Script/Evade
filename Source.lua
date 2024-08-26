@@ -2,8 +2,8 @@ local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzH
 local v = 1.5
 local Window = redzlib:MakeWindow({"YOUHUB : Evade v".. v, "by white7777", "testando-redzLibv5.json"})
 Window:AddMinimizeButton({
-  Button = { Image = "rbxassetid://10834712680", BackgroundTransparency = 0 },
-  Corner = { CornerRadius = UDim.new(0, 6) }
+  Button = { Image = "rbxassetid://5522032314", BackgroundTransparency = 0 },
+  Corner = { CornerRadius = UDim.new(0, 5) }
 })
 function ESP(base, name, trackername, studs)
 	local bb = Instance.new("BillboardGui", game.CoreGui)
