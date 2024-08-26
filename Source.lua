@@ -107,14 +107,49 @@ local Tabs = {
  Settings = Window:MakeTab({"Setting", "User"})
 }
 Tabs.Main:AddSection({"Farm"})
-
+Tabs.Main:AddToggle("AFK",{
+	Title = "AFK Farm < Settings >",
+	Description = "Teleport Far to AFK < Settings >",
+	Callback=function(value)
+_G.AFK = value
+while _G.AFK do wait()
+game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(_G.C1, _G.C2, _G.C3)
+end	
+end})
+Tabs.Main:AddDropdown({
+        Title = "Position X",
+	Description = "Position X",
+        Values = {"-5000", "-2500", "0", "2500", "5000"},
+        MultiSelect = false,
+        Default = {"-5000"},
+	Callback = function(value)
+_G.C1 = value			
+end})
+Tabs.Main:AddDropdown({
+        Title = "Position Y",
+	Description = "Position Y",
+        Values = {"7500", "15000", "30000"},
+        MultiSelect = false,
+        Default = {"7500"},
+	Callback = function(value)
+_G.C2 = value			
+end})
+Tabs.Main:AddDropdown({
+        Title = "Position Z",
+	Description = "Position Z",
+        Values = {"-5000", "-2500", "0", "2500", "5000"},
+        MultiSelect = false,
+        Default = {"-5000"},
+	Callback = function(value)
+_G.C3 = value			
+end})
 Tabs.Main:AddSection({"Main"})
 Tabs.Main:AddDropdown({
   Name = "Speed Boost",
-  Description = "Select a random Number",
+  Description = "Select a Boost",
   Options = {"1", "2", "3", "4", "5"},
   Default = {"1"},
-  MultiSelect = false
+  MultiSelect = false,
   Callback = function(value)
 _G.Speed = value
 if _G.Speed = "1" then
@@ -132,7 +167,7 @@ end
 })
 Tabs.Main:AddToggle({
         Name = "Speed",
-	      Description = "Boost Speed",	
+        Description = "Boost Speed",	
       	Callback = function(value)
 game:GetService("RunService").RenderStepped:Connect(function()
 			pcall(function()
@@ -360,22 +395,33 @@ Tabs.Cheat:AddToggle({
 end})
 Tabs.Cheat:AddSection({"Highlight"})			
 
+Tabs.Cheat:AddToggle({
+	Name = "Character Highlight",
+	Callback = function(value)
+getgenv().enabled = value
+getgenv().filluseteamcolor = true --Toggle fill color using player team color on/off
+getgenv().outlineuseteamcolor = true --Toggle outline color using player team color on/off
+getgenv().fillcolor = Color3.new(0, 0, 0) --Change fill color, no need to edit if using team color
+getgenv().outlinecolor = Color3.fromRGB(15, 255, 80) --Change outline color, no need to edit if using team color
+getgenv().filltrans = 0.5 --Change fill transparency
+getgenv().outlinetrans = 0.5 --Change outline transparency
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/RobloxScripts/main/Highlight-ESP.lua"))()
+end)
 
-
-
-
-
-
-
-Tab1:AddButton({"Dark Theme", function()
-  redzlib:SetTheme("Dark")
-end})
-
-Tab1:AddButton({"Darker Theme", function()
-  redzlib:SetTheme("Darker")
-end})
-
-Tab1:AddButton({"Dark Purple", function()
-  redzlib:SetTheme("Purple")
+Tabs.Main:AddDropdown({
+  Name = "Theme",
+  Description = "Select Theme",
+  Options = {"Dark", "Darker", "Dark Purple"},
+  Default = {"Darker"},
+  MultiSelect = false,
+  Callback = function(value)
+_env.Theme = value
+if _env.Theme = "Dark" then
+redzlib:SetTheme("Dark")
+elseif _env.Theme = "Darker" then
+redzlib:SetTheme("Darker")
+elseif _env.Theme = "Dark Purple" then
+redzlib:SetTheme("Purple")
+end							
 end})
