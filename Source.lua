@@ -42,7 +42,7 @@ function ESP2(base, name, trackername, studs)
 	frame.ZIndex = 10
 	frame.BackgroundTransparency = 0.3
 	frame.Size = UDim2.new(1, 0, 1, 0)
-	frame.BackgroundColor3 = Color3.fromRGB(15, 255, 80)
+	frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	local txtlbl = Instance.new("TextLabel", bb)
 	txtlbl.ZIndex = 10
 	txtlbl.BackgroundTransparency = 1
@@ -52,7 +52,7 @@ function ESP2(base, name, trackername, studs)
 	txtlbl.FontSize = "Size14"
 	txtlbl.Text = name
 	txtlbl.TextStrokeTransparency = 0.5
-	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
+	txtlbl.TextColor3 = Color3.fromRGB(255, 255, 255)
 end
 function ESP3(base, name, trackername, studs)
 	local bb = Instance.new("BillboardGui", game.CoreGui)
@@ -147,36 +147,20 @@ Tabs.Main:AddSection({"Main"})
 Tabs.Main:AddDropdown({
   Name = "Speed Boost",
   Description = "Select a Boost",
-  Options = {"1", "2", "3", "4", "5"},
-  Default = {"1"},
+  Options = {"100", "200", "300", "400", "500"},
+  Default = {"100"},
   MultiSelect = false,
   Callback = function(value)
-_G.Speed = value
-if _G.Speed = "1" then
-_G.ToggleSpeed = 100
-elseif _G.Speed = "2" then
-_G.ToggleSpeed = 200
-elseif _G.Speed = "3" then
-_G.ToggleSpeed = 300
-elseif _G.Speed = "4" then
-_G.ToggleSpeed = 400
-elseif _G.Speed = "5" then
-_G.ToggleSpeed = 500
-end
-end
-})
-Tabs.Main:AddToggle({
-        Name = "Speed",
-        Description = "Boost Speed",	
-      	Callback = function(value)
+_G.ToggleSpeed = value
 game:GetService("RunService").RenderStepped:Connect(function()
 			pcall(function()
 				if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
 					game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * _G.ToggleSpeed/100)
 				end
 			end)
-		end)
-	end})			
+		end)			
+end
+})	
 Tabs.Main:AddToggle({
 	Name = "Auto Whistle & Stop Emote",
 	Description = "Stop Emote & Auto Whistle",
@@ -257,7 +241,7 @@ game.Lighting.FogStart = 0
 game.Lighting.FogEnd = 9e9				
 else
 game.Lighting.FogStart = 100			
-game.Lighting.FogEnd = 200
+game.Lighting.FogEnd = 10000
 end
 end})
 Tabs.Cheat:AddSection({"Anti"})		
@@ -412,19 +396,4 @@ getgenv().outlinetrans = 0.5 --Change outline transparency
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/RobloxScripts/main/Highlight-ESP.lua"))()
 end})
 
-Tabs.Settings:AddDropdown({
-  Name = "Theme",
-  Description = "Select Theme",
-  Options = {"Dark", "Darker", "Dark Purple"},
-  Default = {"Darker"},
-  MultiSelect = false,
-  Callback = function(value)
-_env.Theme = value
-if _env.Theme = "Dark" then
-redzlib:SetTheme("Dark")
-elseif _env.Theme = "Darker" then
-redzlib:SetTheme("Darker")
-elseif _env.Theme = "Dark Purple" then
-redzlib:SetTheme("Purple")
-end							
-end})
+
