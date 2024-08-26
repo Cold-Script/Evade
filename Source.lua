@@ -102,7 +102,7 @@ function ClearESP(espname)
 	end
 end
 local Tabs = {
- Main = Window:MakeTab({"Main", "Jerry"}),
+ Main = Window:MakeTab({"Main", "Home"}),
  Cheat = Window:MakeTab({"Visual", "Sword"}),
  Settings = Window:MakeTab({"Setting", "User"})
 }
@@ -407,9 +407,9 @@ getgenv().filltrans = 0.5 --Change fill transparency
 getgenv().outlinetrans = 0.5 --Change outline transparency
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Vcsk/RobloxScripts/main/Highlight-ESP.lua"))()
-end)
+end})
 
-Tabs.Main:AddDropdown({
+Tabs.Settings:AddDropdown({
   Name = "Theme",
   Description = "Select Theme",
   Options = {"Dark", "Darker", "Dark Purple"},
