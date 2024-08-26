@@ -102,8 +102,8 @@ function ClearESP(espname)
 	end
 end
 local Tabs = {
- Main = Window:MakeTab({"Main", "Jerry"})
- Cheat = Window:MakeTab({"Visual", "Sword"})
+ Main = Window:MakeTab({"Main", "Jerry"}),
+ Cheat = Window:MakeTab({"Visual", "Sword"}),
  Settings = Window:MakeTab({"Setting", "User"})
 }
 Tabs.Main:AddSection({"Farm"})
