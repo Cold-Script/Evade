@@ -107,8 +107,8 @@ local Tabs = {
  Settings = Window:MakeTab({"Setting", "User"})
 }
 Tabs.Main:AddSection({"Farm"})
-Tabs.Main:AddToggle("AFK",{
-	Title = "AFK Farm < Settings >",
+Tabs.Main:AddToggle({
+	Name = "AFK Farm < Settings >",
 	Description = "Teleport Far to AFK < Settings >",
 	Callback=function(value)
 _G.AFK = value
@@ -117,27 +117,27 @@ game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = C
 end	
 end})
 Tabs.Main:AddDropdown({
-        Title = "Position X",
+        Name = "Position X",
 	Description = "Position X",
-        Values = {"-5000", "-2500", "0", "2500", "5000"},
+        Options = {"-5000", "-2500", "0", "2500", "5000"},
         MultiSelect = false,
         Default = {"-5000"},
 	Callback = function(value)
 _G.C1 = value			
 end})
 Tabs.Main:AddDropdown({
-        Title = "Position Y",
+        Name = "Position Y",
 	Description = "Position Y",
-        Values = {"7500", "15000", "30000"},
+        Options = {"7500", "15000", "30000"},
         MultiSelect = false,
         Default = {"7500"},
 	Callback = function(value)
 _G.C2 = value			
 end})
 Tabs.Main:AddDropdown({
-        Title = "Position Z",
+        Name = "Position Z",
 	Description = "Position Z",
-        Values = {"-5000", "-2500", "0", "2500", "5000"},
+        Options = {"-5000", "-2500", "0", "2500", "5000"},
         MultiSelect = false,
         Default = {"-5000"},
 	Callback = function(value)
