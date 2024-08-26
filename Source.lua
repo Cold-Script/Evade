@@ -305,6 +305,7 @@ while _G.Killbrick do wait()
       for _,v in pairs(workspace.Game.Map:GetDescendants()) do
 if v.Name == "Lava" then
 v:Destroy()
+	    end					
 	  end					
 	end				
     end})
@@ -317,6 +318,7 @@ while _G.Killbrick do wait()
       for _,v in pairs(workspace.Game.Map:GetDescendants()) do
 if v.Name == "Killbrick" then
 v:Destroy()
+	    end
 	  end					
 	end				
     end})
@@ -396,7 +398,8 @@ end})
 Tabs.Cheat:AddSection({"Highlight"})			
 
 Tabs.Cheat:AddToggle({
-	Name = "Character Highlight",
+	Name = "Highlight Players",
+	Description = "Highlight Players",
 	Callback = function(value)
 getgenv().enabled = value
 getgenv().filluseteamcolor = true --Toggle fill color using player team color on/off
