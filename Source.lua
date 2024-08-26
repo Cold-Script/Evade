@@ -5,6 +5,102 @@ Window:AddMinimizeButton({
   Button = { Image = "rbxassetid://10834712680", BackgroundTransparency = 0 },
   Corner = { CornerRadius = UDim.new(0, 6) }
 })
+function ESP(base, name, trackername, studs)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local frame = Instance.new("Frame", bb)
+	frame.ZIndex = 10
+	frame.BackgroundTransparency = 0.3
+	frame.Size = UDim2.new(1, 0, 1, 0)
+	frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -48)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "ArialBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(255, 0, 0)
+end
+
+function ESP2(base, name, trackername, studs)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local frame = Instance.new("Frame", bb)
+	frame.ZIndex = 10
+	frame.BackgroundTransparency = 0.3
+	frame.Size = UDim2.new(1, 0, 1, 0)
+	frame.BackgroundColor3 = Color3.fromRGB(15, 255, 80)
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -48)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "ArialBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(15, 255, 80)
+end
+function ESP3(base, name, trackername, studs)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -60)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "ArialBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(255, 0, 0)
+end
+function ESP4(base, name, trackername, studs)
+	local bb = Instance.new("BillboardGui", game.CoreGui)
+	bb.Adornee = base
+	bb.ExtentsOffset = Vector3.new(0, 1, 0)
+	bb.AlwaysOnTop = true
+	bb.Size = UDim2.new(0, 6, 0, 6)
+	bb.StudsOffset = Vector3.new(0, 1, 0)
+	bb.Name = trackername
+	
+	local txtlbl = Instance.new("TextLabel", bb)
+	txtlbl.ZIndex = 10
+	txtlbl.BackgroundTransparency = 1
+	txtlbl.Position = UDim2.new(0, 0, 0, -60)
+	txtlbl.Size = UDim2.new(1, 0, 10, 0)
+	txtlbl.Font = "ArialBold"
+	txtlbl.FontSize = "Size14"
+	txtlbl.Text = name
+	txtlbl.TextStrokeTransparency = 0.5
+	txtlbl.TextColor3 = Color3.fromRGB(125, 249, 255)
+end
+
+function ClearESP(espname)
+	for _, v in pairs(game.CoreGui:GetChildren()) do
+		if v.Name == espname and v:isA("BillboardGui") then
+			v:Destroy()
+		end
+	end
+end
 local Tabs = {
  Main = Window:MakeTab({"Main", "Jerry"})
  Cheat = Window:MakeTab({"Visual", "Sword"})
@@ -189,6 +285,8 @@ v:Destroy()
 	  end					
 	end				
     end})
+Tabs.Cheat:AddSection({"ESP"})
+		
 Tabs.Cheat:AddToggle({
 	Name = "NextBots & Players ESP",
 	Description = "ESP Bots & Players",
@@ -196,9 +294,8 @@ Tabs.Cheat:AddToggle({
 		getgenv().botesp = besp
 		getgenv().iaesp = besp
 		getgenv().plresp = besp	
-		task.spawn(
-                function()
-			while task.wait() do
+		_spawn(function()
+			while _wait() do
 				ClearESP('AI_Tracker')
 				if not getgenv().botesp then
 					break
@@ -212,41 +309,40 @@ Tabs.Cheat:AddToggle({
 				if not getgenv().iaesp then
 					break
 				end		
-				pcall(function()
-					local GamePlayers = workspace.Game.Players
-					for i, v in pairs(GamePlayers:GetChildren()) do
-							Simple2(v.HumanoidRootPart, v.Name, "Player_ESP")
-					end
-				end)
+				
 				pcall(function()
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if not game.Players:FindFirstChild(v.Name) then
-							Simple_Create(v.HumanoidRootPart,v.Name, "AI_Tracker")
+							ESP(v.HumanoidRootPart,v.Name, "AI_Tracker")
 						end
 					end
 				end)
 				pcall(function()
 					local GamePlayers = workspace.Game.Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
+							ESP2(v.HumanoidRootPart, v.Name, "Player_ESP")
+					end
+				end)				
+				pcall(function()
+					local GamePlayers = workspace.Game.Players
+					for i, v in pairs(GamePlayers:GetChildren()) do
 						if not game.Players:FindFirstChild(v.Name) then
-							Simple3(v.HumanoidRootPart, "[ Artificial ]", "AI_Text")
+							ESP3(v.HumanoidRootPart, "[ Artificial ]", "AI_Text")
 						end
 					end
 				end)		
 						
 			end
-		end
-            )
-	end
-	})		
-v9:AddToggle("",{
-	Text = "Downed ESP",
+       	   end)
+end})		
+Tabs.Cheat:AddToggle({
+	Name = "Downed ESP",
+	Description = "ESP Players Downed",
 	Callback = function(desp)
 		getgenv().downesp = desp
-		task.spawn(
-                function()
-			while task.wait() do
+		_spawn(function()
+			while _wait() do
 				ClearESP('Downed_ESP')
 				if not getgenv().downesp then
 					break
@@ -255,17 +351,14 @@ v9:AddToggle("",{
 					local GamePlayers = workspace:WaitForChild("Game", 1337).Players
 					for i, v in pairs(GamePlayers:GetChildren()) do
 						if v:GetAttribute('Downed') then
-							Simple(v.HumanoidRootPart, '[ Downed ]', "Downed_ESP")
+							ESP4(v.HumanoidRootPart, '[ Downed ]', "Downed_ESP")
 						end
 					end
 				end)
 			end
-		end
-            )
-	end
-}
-		)
-		
+            end)
+end})
+Tabs.Cheat:AddSection({"Highlight"})			
 
 
 
