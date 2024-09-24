@@ -100,13 +100,13 @@ Tabs.Main:AddDropdown({
 	Callback = function(value)
 _G.C1 = value			
 end})
-_G.C2 = 7500
+_G.C2 = 3500
 Tabs.Main:AddDropdown({
         Name = "Position Y",
 	Description = "Position Y",
         Options = {"3500", "7000", "10000"},
         MultiSelect = false,
-        Default = {"7500"},
+        Default = {"3500"},
 	Callback = function(value)
 _G.C2 = value			
 end})
@@ -139,14 +139,14 @@ Tabs.Main:AddButton({
         Name = "Teleport Map",
         Description = "Teleport map in play",
         Callback = function()
-game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -15, 0)
+game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -1500, 0)
 end})
 Tabs.Main:AddSection({"Players"})
 _G.ToggleSpeed = 0
 Tabs.Main:AddDropdown({
   Name = "Speed Boost",
   Description = "Select a Boost",
-  Options = {"0","2","4","6","8","10","12","14","16"},
+  Options = {"0","5","10","15","20,"25","30","35","40"},
   Default = {"0"},
   MultiSelect = false,
   Callback = function(value)
@@ -320,12 +320,16 @@ Tabs.Cheat:AddToggle({
 	Description = "ESP Bots & Players",
 	Callback = function(value)
 if value then
+spawn(function()
 pcall(function()
+while true do
 for _,v in pairs(workspace.Game.Players:GetDescendants()) do
 if v.Name == "HumanoidRootPart" then
 CylinderESP(v, v.Parent.Name, v.Color, "ESP01")
 end
 end
+end										
+end)
 end)
 else
 for _,v in pairs(workspace:GetDescendants()) do
