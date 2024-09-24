@@ -104,7 +104,7 @@ _G.C2 = 7500
 Tabs.Main:AddDropdown({
         Name = "Position Y",
 	Description = "Position Y",
-        Options = {"7500", "15000", "30000"},
+        Options = {"3500", "7000", "10000"},
         MultiSelect = false,
         Default = {"7500"},
 	Callback = function(value)
@@ -125,7 +125,7 @@ Tabs.Main:AddToggle({
 	Description = "Teleport Far to AFK",
 	Callback=function(value)
 _G.AFK = value
-while _G.AFK do wait(3)
+while _G.AFK do wait(0.3)
 spawn(function()
 pcall(function()
 game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(_G.C1, _G.C2, _G.C3)
@@ -139,14 +139,14 @@ Tabs.Main:AddButton({
         Name = "Teleport Map",
         Description = "Teleport map in play",
         Callback = function()
-game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, 0, 0)
+game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -15, 0)
 end})
 Tabs.Main:AddSection({"Players"})
 _G.ToggleSpeed = 0
 Tabs.Main:AddDropdown({
   Name = "Speed Boost",
   Description = "Select a Boost",
-  Options = {"0","25","50","75","100","125","150","175","200"},
+  Options = {"0","2","4","6","8","10","12","14","16"},
   Default = {"0"},
   MultiSelect = false,
   Callback = function(value)
@@ -205,21 +205,6 @@ end)
 end        
 end})
 Tabs.Main:AddSection({"Camera"})
-_G.FOV = 70
-Tabs.Main:AddDropdown({
-  Name = "FieldOfView",
-  Description = "Select a Field Of View",
-  Options = {"70","80","90","100","110","120"},
-  Default = {"70"},
-  MultiSelect = false,
-  Callback = function(value)
-_G.FOV = value
-game:GetService("RunService").RenderStepped:Connect(function()
-pcall(function()
-workspace.CurrentCamera.FieldOfView = _G.FOV
-end)
-end)
-end})
 Tabs.Main:AddToggle({
 	Name = "No Shake Camera",
 	Description = "No Shake Camera",
@@ -291,6 +276,17 @@ end)
 end)						
 end				
 end})
+Tabs.Main:AddButton({
+        Name = "Infjump",
+        Description = "Infinity Jump",
+        Callback = function()
+local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+if InfiniteJumpEnabled then
+game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):ChangeState("Jumping")
+end
+end)
+end})			
 Tabs.Main:AddSection({"Lighting"})
 Tabs.Main:AddToggle({
 	Name = "Fullbright",
@@ -318,8 +314,8 @@ game.Lighting.FogStart = 100
 game.Lighting.FogEnd = 10000
 end
 end})
-Tabs.Visual:AddSection({"ESP"})
-Tabs.Visual:AddToggle({
+Tabs.Cheat:AddSection({"ESP"})
+Tabs.Cheat:AddToggle({
 	Name = "ESP Bot & Players",
 	Description = "ESP Bots & Players",
 	Callback = function(value)
@@ -339,7 +335,7 @@ end
 end
 end
 end})
-Tabs.Visual:AddToggle({
+Tabs.Cheat:AddToggle({
 	Name = "ESP Players On Downed",
 	Description = "ESP Players Down",
 	Callback = function(value)
