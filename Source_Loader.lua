@@ -180,7 +180,7 @@ Tabs.Main:AddSection({"Auto"})
 Tabs.Main:AddToggle({
 	Name = "Auto Whistle",
 	Description = "Auto Whistle",
-	Callback=function(value)
+	Callback = function(value)
 _G.Whi = value
 while _G.Whi do wait()
 spawn(function()
@@ -194,7 +194,7 @@ end})
 Tabs.Main:AddToggle({
 	Name = "Auto Drink Cola",
 	Description = "Drink Cola (Can Complete Quest)",
-	Callback=function(value)
+	Callback = function(value)
 _G.Drink = value
 while _G.Drink do wait()
 spawn(function()
@@ -208,7 +208,7 @@ Tabs.Main:AddSection({"Camera"})
 Tabs.Main:AddToggle({
 	Name = "No Shake Camera",
 	Description = "No Shake Camera",
-	Callback=function(value)
+	Callback = function(value)
 _G.NoC = value			
 while _G.NoC do wait()
 spawn(function()
@@ -225,7 +225,7 @@ Tabs.Main:AddToggle({
 	Callback = function(value)
 if value then
 workspace.Game.Settings:SetAttribute("ReviveTime", 2.2)
-			else
+else
 workspace.Game.Settings:SetAttribute("ReviveTime", 3)				
 end
 end})
@@ -344,12 +344,16 @@ Tabs.Cheat:AddToggle({
 	Description = "ESP Players Down",
 	Callback = function(value)
 if value then
+spawn(function()
 pcall(function()
+while true do
 for _,v in pairs(workspace.Game.Players:GetDescendants()) do
 if v:GetAttribute('Downed') then
 Billboard2(v, "", Color3.fromRGB(125, 249, 255), "ESP02")
 end
 end
+end										
+end)										
 end)
 else
 for _,v in pairs(workspace:GetDescendants()) do
