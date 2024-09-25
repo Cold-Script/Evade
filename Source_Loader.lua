@@ -199,7 +199,7 @@ end
 end)
 end)
 Tabs.Main:AddToggle({
-	Text = "Noclip",
+	Name = "Noclip",
 	Description = "Noclip Players",	
 	Callback = function(value)
 _G.Noclip = value
@@ -209,7 +209,7 @@ v.CanCollide = true
 end 
 end})
 Tabs.Main:AddToggle({
-	Text = "No Gravity",
+	Name = "No Gravity",
 	Description = "No Gravity",	
 	Callback = function(value)
 pcall(function()
@@ -221,7 +221,7 @@ end
 end)
 end})			
 Tabs.Main:AddToggle({
-	Text = "No Massless Body",
+	Name = "No Massless Body",
 	Description = "No Massless Body",	
 	Callback = function(value)
 pcall(function()
@@ -416,28 +416,6 @@ end)
 else
 for _,v in pairs(workspace:GetDescendants()) do
 if v.Name == "ESP01" then
-v:Destroy()
-end
-end
-end
-end})
-Tabs.Cheat:AddToggle({
-	Name = "ESP Players On Downed",
-	Description = "ESP Players Down",
-	Callback = function(value)
-if value then
-spawn(function()
-pcall(function()
-for _,v in pairs(workspace.Game.Players:GetDescendants()) do
-if v:GetAttribute('Downed') then
-Billboard2(v, "", Color3.fromRGB(125, 249, 255), "ESP02")
-end
-end										
-end)										
-end)
-else
-for _,v in pairs(workspace:GetDescendants()) do
-if v.Name == "ESP02" then
 v:Destroy()
 end
 end
