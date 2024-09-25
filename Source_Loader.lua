@@ -406,11 +406,9 @@ Tabs.Cheat:AddToggle({
 if value then
 spawn(function()
 pcall(function()
-while true do
 for _,v in pairs(workspace.Game.Players:GetDescendants()) do
 if v.Name == "HumanoidRootPart" then
 CylinderESP(v, v.Parent.Name, v.Color, "ESP01")
-end
 end
 end										
 end)
@@ -430,11 +428,9 @@ Tabs.Cheat:AddToggle({
 if value then
 spawn(function()
 pcall(function()
-while true do
 for _,v in pairs(workspace.Game.Players:GetDescendants()) do
 if v:GetAttribute('Downed') then
 Billboard2(v, "", Color3.fromRGB(125, 249, 255), "ESP02")
-end
 end
 end										
 end)										
