@@ -142,23 +142,107 @@ Tabs.Main:AddButton({
 game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, -1500, 0)
 end})
 Tabs.Main:AddSection({"Players"})
-_G.ToggleSpeed = 0
-Tabs.Main:AddDropdown({
-  Name = "Speed Boost",
-  Description = "Select a Boost",
-  Options = {"0","5","10","15","20,"25","30","35","40"},
-  Default = {"0"},
-  MultiSelect = false,
+Tabs.Main:AddSlider({
+  Name = "Body Transparency",
+  Description = "Select Transparency of body",
+  Min = 0,
+  Max = 1,
+  Increase = 1,
+  Default = 0,
   Callback = function(value)
-_G.ToggleSpeed = value
-game:GetService("RunService").RenderStepped:Connect(function()
-pcall(function()
+game:GetService("RunService").RenderStepped:Connect(function()			
+pcall(function()			
+game.Players.LocalPlayer.Character.Head.Transparency = value;
+game.Players.LocalPlayer.Character.LeftFoot.Transparency = value;
+game.Players.LocalPlayer.Character.LeftHand.Transparency = value;
+game.Players.LocalPlayer.Character.LeftLowerArm.Transparency = value;
+game.Players.LocalPlayer.Character.LeftLowerLeg.Transparency = value;
+game.Players.LocalPlayer.Character.LeftUpperArm.Transparency = value;
+game.Players.LocalPlayer.Character.LeftUpperLeg.Transparency = value;
+game.Players.LocalPlayer.Character.LowerTorso.Transparency = value;
+game.Players.LocalPlayer.Character.RightFoot.Transparency = value;
+game.Players.LocalPlayer.Character.RightFoot.Transparency = value;
+game.Players.LocalPlayer.Character.RightHand.Transparency = value;
+game.Players.LocalPlayer.Character.RightLowerArm.Transparency = value;
+game.Players.LocalPlayer.Character.RightLowerLeg.Transparency = value;
+game.Players.LocalPlayer.Character.RightUpperArm.Transparency = value;
+game.Players.LocalPlayer.Character.RightUpperLeg.Transparency = value;
+game.Players.LocalPlayer.Character.UpperTorso.Transparency = value;	
+end)
+end)					
+end})
+_G.ToggleSpeed = 1
+Tabs.Main:AddSlider({
+  Name = "Speed Boots",
+  Description = "Select a Boots",
+  Min = 1,
+  Max = 25,
+  Increase = 1,
+  Default = 1,
+  Callback = function(value)
+_G.ToggleSpeed = value			
+game:GetService("RunService").RenderStepped:Connect(function()			
+pcall(function()	
 if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
 game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * _G.ToggleSpeed/100)
 end
 end)
 end)
+end})			
+game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+for _,v in next,game.Players.LocalPlayer.Character:GetDescendants() do 
+if v:IsA("BasePart", v) and _G.Noclip then 
+v.CanCollide = false
+end
+end
+end)
+end)
+Tabs.Main:AddToggle({
+	Text = "Noclip",
+	Description = "Noclip Players",	
+	Callback = function(value)
+_G.Noclip = value
+if _G.Noclip == false then				
+v:IsA("BasePart")
+v.CanCollide = true
+end 
 end})
+Tabs.Main:AddToggle({
+	Text = "No Gravity",
+	Description = "No Gravity",	
+	Callback = function(value)
+pcall(function()
+if value then
+workspace.Gravity = 0
+else		
+workspace.Gravity = 50
+end
+end)
+end})			
+Tabs.Main:AddToggle({
+	Text = "No Massless Body",
+	Description = "No Massless Body",	
+	Callback = function(value)
+pcall(function()
+game.Players.LocalPlayer.Character.Head.Massless = not value;
+game.Players.LocalPlayer.Character.LeftFoot.Massless = not value;
+game.Players.LocalPlayer.Character.LeftHand.Massless = not value;
+game.Players.LocalPlayer.Character.LeftLowerArm.Massless = not value;
+game.Players.LocalPlayer.Character.LeftLowerLeg.Massless = not value;
+game.Players.LocalPlayer.Character.LeftUpperArm.Massless = not value;
+game.Players.LocalPlayer.Character.LeftUpperLeg.Massless = not value;
+game.Players.LocalPlayer.Character.LowerTorso.Massless = not value;
+game.Players.LocalPlayer.Character.RightFoot.Massless = not value;
+game.Players.LocalPlayer.Character.RightFoot.Massless = not value;
+game.Players.LocalPlayer.Character.RightHand.Massless = not value;
+game.Players.LocalPlayer.Character.RightLowerArm.Massless = not value;
+game.Players.LocalPlayer.Character.RightLowerLeg.Massless = not value;
+game.Players.LocalPlayer.Character.RightUpperArm.Massless = not value;
+game.Players.LocalPlayer.Character.RightUpperLeg.Massless = not value;
+game.Players.LocalPlayer.Character.UpperTorso.Massless = not value;	
+end)						
+end})		
 Tabs.Main:AddToggle({
         Name = "Respawn On Downed",
 	Description = "When Downed Auto Respawn",	
