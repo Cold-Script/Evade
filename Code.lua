@@ -1,4 +1,16 @@
 --EZ EVADE
+function Distance(part, extra)
+	if not extra then extra = 15 end
+	if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or not part then
+		return false
+	end
+	local distanceToPart = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - part.Position).magnitude
+	if distanceToPart <= extra then
+		return true
+	end
+	return false
+end
+
 local function Billboard(child, name, color, title)
 bill = Instance.new("BillboardGui",child)
         bill.AlwaysOnTop = true
