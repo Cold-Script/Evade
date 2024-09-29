@@ -1,98 +1,24 @@
-local Players = game:GetService('Players')
-        local localplayer = Players.LocalPlayer
-        local GuiService = game:GetService("GuiService")
-        local Light = game:GetService("Lighting")
-local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
-local PhantomForcesWindow = Library:NewWindow("⁠☆ YOUHUB ☆ | Evade")
-local v0 = PhantomForcesWindow:NewSection("Farm")
-v0:CreateToggle("AFK Farm",function(value)
-_G.AFK = value
-while _G.AFK do wait()
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(0, 250, 0)
-wait(0.15)
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(500, 250, 500)
-wait(0.15)
-localplayer.Character:FindFirstChild('HumanoidRootPart').CFrame = CFrame.new(-500, 250, -500)
-    end
-end)
-local v1 = PhantomForcesWindow:NewSection("Respawn")
-
-v1:CreateButton("Respawn [ Downed Only ]", function()
-game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-end)
-v1:CreateToggle("Respawn On Downed",function(value)
-_G.Rep = value
-while _G.Rep do wait()
-if localplayer.Character:GetAttribute("Downed") then
-game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
-end
-end
-end)
-local v2 = PhantomForcesWindow:NewSection("Camera")
-v2:CreateDropdown("POV Camera", {"Follow", "Fixed", "Attach"}, 1,function(value)
-_G.POVc = value
-if _G.POVc == "Follow" then
-                workspace.CurrentCamera.CameraType = "Follow"
-            elseif _G.POVc == 'Fixed' then
-                workspace.CurrentCamera.CameraType = "Fixed"
-            elseif _G.POVc == 'Attach' then
-                workspace.CurrentCamera.CameraType = "Attach"
-            end
-end)
-v2:CreateButton("No Shake Camera", function()
-  localplayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
-end)
-
-local v3 = PhantomForcesWindow:NewSection("Misc")
-v3:CreateButton("Infinite yield [ AC ]", function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-end)
-
-v3:CreateButton("Disabled Barrier", function()
-for _,v in pairs(workspace.Game.Map:GetDescendants()) do
-if v.Name == "InvisParts" then
-v:Destroy()
-end
-end
-end)
-v3:CreateButton("Day", function()
-  Light.ClockTime = 12
-end)
-v3:CreateButton("Night", function()
-  Light.ClockTime = 24
-end)
-v3:CreateButton("No Cooldown Jump", function()
-  local InfiniteJumpEnabled = true
-game:GetService("UserInputService").JumpRequest:connect(function()
-if InfiniteJumpEnabled then
-game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-    end
-end)
-end)
-
-v3:CreateToggle("Fullbright [ NoFog ]",function(value)
-if value then
-Light.Brightness = 3
-Light.GlobalShadows = false
-Light.OutdoorAmbient = Color3.new(1,1,1)
-Light.FogEnd = 9e9
-else
-Light.Brightness = 2
-Light.GlobalShadows = true
-Light.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
-Light.FogEnd = 200
-end
-end)
-v3:CreateToggle("Auto Drink Cola",function(value)
-_G.Drink = value
-while _G.Drink do wait()
-game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
-end
-end)
-local v4 = PhantomForcesWindow:NewSection("Credits")
-v4:CreateButton("rechedmcvn & GV", function()
-game:GetService("Players").LocalPlayer.PlayerGui.HUD.Messages.Use:Fire("<font color=\"rgb(255,0,0)\">Owner : rechedmcvn and GV (100%) </font>")
-end)
-
-
+local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
+local Window = OrionLib:MakeWindow({IntroText = "YPoint Started!", IntroIcon = "rbxassetid://7733955740",Name = ("YPoint | You Use ".. identifyexecutor()), HidePremium = false, SaveConfig = false, IntroEnabled = true, ConfigFolder = "LOL"})
+local Tab1 = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local PlayerSection = Tab1:AddSection({
+	Name = "Main"
+})
+PlayerSection:AddSlider({
+	Name = "SpeedBoost",
+	Min = 0,
+	Max = 10,
+	Default = 0,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Walkspeed",
+	Callback = function(value)
+        game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * value/100)
+	end    
+})
 
