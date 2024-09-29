@@ -11,13 +11,13 @@ function Distance(part, extra)
 	return false
 end
 
-local function Billboard(child, name, color, title)
+local function Billboard(child, name, color)
 bill = Instance.new("BillboardGui",child)
         bill.AlwaysOnTop = true
         bill.Size = UDim2.new(0,400,0,100)
         bill.Adornee = child
         bill.MaxDistance = 5000
-        bill.Name = title
+        bill.Name = "BotESP"
 
         local mid = Instance.new("Frame",bill)
         mid.AnchorPoint = Vector2.new(0.5,0.5)
@@ -35,16 +35,21 @@ bill = Instance.new("BillboardGui",child)
         txt.TextSize = "20"
         txt.Size = UDim2.new(1,0,0,-50)
         txt.Position = UDim2.new(0.5,0,0.7,-55)
- task.spawn(function()
+task.spawn(function()
 game:GetService("RunService").RenderStepped:Connect(function()
 txt.Text = string.format("%s\n[%s studs]", name or child.Name, math.floor((game.Players.LocalPlayer.Character.Head.Position - child:GetPivot().Position).Magnitude));
 end);
 end);
+wait(1)
+for _,v in pairs(workspace:GetDescendants()) do
+if v.Name == "BotESP" then
+v:Destroy()
+end
 end
 pcall(function()
 for _,v in pairs(workspace.Game.Players:GetDescendants()) do
-if not game.Players:FindFirstChild(v.Name) then
-Billboard(v.HumanoidRootPart, v.Name, Color3.new(1), "BotESP")
+if not game.Players:FindFirstChild(v.Name) and v.Name == "HumanoidRootPart" then
+Billboard(v, v.Parent.Name, Color3.new(1))
 end
 end
 end)
