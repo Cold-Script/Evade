@@ -46,13 +46,12 @@ if v.Name == "BotESP" then
 v:Destroy()
 end
 end
-pcall(function()
-for _,v in pairs(workspace.Game.Players:GetDescendants()) do
-if not game.Players:FindFirstChild(v.Name) and v.Name == "HumanoidRootPart" then
-Billboard(v, v.Parent.Name, Color3.new(1))
 end
 end
-end)
+while wait(1) do spawn(function()pcall(function()
+for _,v in pairs(workspace.Game.Players:GetDescendants()) do 
+if not game.Players:FindFirstChild(v.Name) and v.Name == "HumanoidRootPart" then 
+Billboard(v, v.Parent.Name, v.Color, "BotESP") end end end) end) end
 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 game:GetService("RunService").RenderStepped:Connect(function()			
 pcall(function()	
