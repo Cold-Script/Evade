@@ -4,7 +4,7 @@ bill = Instance.new("BillboardGui",child)
         bill.AlwaysOnTop = true
         bill.Size = UDim2.new(0,400,0,100)
         bill.Adornee = child
-        bill.MaxDistance = 2000
+        bill.MaxDistance = 5000
         bill.Name = title
 
         local mid = Instance.new("Frame",bill)
@@ -32,7 +32,7 @@ end
 pcall(function()
 for _,v in pairs(workspace.Game.Players:GetDescendants()) do
 if not game.Players:FindFirstChild(v.Name) then
-Billboard(v, v.Name, Color3.new(1), "BotESP")
+Billboard(v.HumanoidRootPart, v.Name, Color3.new(1), "BotESP")
 end
 end
 end)
