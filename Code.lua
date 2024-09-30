@@ -27,7 +27,7 @@ if game.Players.LocalPlayer.Character:GetAttribute("Downed") then
 game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
 end
 game.Players.LocalPlayer.PlayerScripts.CameraShake.Value = CFrame.new(0,0,0) * CFrame.new(0,0,0)
-workspace.Game.Settings:SetAttribute("ReviveTime", 1.5)
+workspace.Game.Settings:SetAttribute("ReviveTime", 1.95)
 end)
 end)
 local IJ = true
