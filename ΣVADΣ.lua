@@ -68,8 +68,10 @@ TP(CFrame.new(0, 1500, 0)
 if _G.TweenCircleAFK then
 CircleTween(CFrame.new(10, 0, 10))
 end
+_G.TweenCircleAFK = true
 else
 TP(CFrame.new(0, -1500, 0)
+_G.TweenCircleAFK = false
 end
 end
 end)
