@@ -106,6 +106,24 @@ else
 workspace.Game.Settings:SetAttribute("ReviveTime", 3)				
 end
 end})
+Add.Left:AddToggle("MyToggle",{
+    Text = "No Map",
+    Default = false,
+    Risky = true,
+    Callback = function(v)
+_G.NM = v
+game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+if _G.NM then
+Map = for _,v in pairs(workspace:GetDescendants()) do
+v.Map:Destroy()
+end
+else
+Map:Disconnect()
+end
+end)
+end)
+end})
 Add.Right:AddToggle("MyToggle",{
 	Text = "Auto Whistle",
 	Default = false,
