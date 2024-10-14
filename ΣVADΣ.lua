@@ -23,7 +23,6 @@ local Players = game:GetService("Players")
 local workspace = game:GetService("Workspace")
 local RunService = game:GetService("RunService")
 -// Accronym Game \\
-local GamePlayer = workspace.Game.Players
 local Gravity = workspace.Gravity
 local VoidROBLOX = workspace.FallenPartsDestroyHeight
 local LocalPlayer = Players.LocalPlayer
@@ -56,24 +55,70 @@ local Add = {
   Left = Tab:AddLeftGroupbox("Main"),
   Right = Tab:AddRightGroupbox("Auto")
 }
+Add.Left:AddSlider("MySlider",{
+    Text = "Cooldown Farm",
+    Default = 0,
+    Min = 0, Max = 0.25,
+    Rounding = 1, Compact = true,
+    Callback = function(v)
+_G.CDAFK = v
+end})
 Add.Left:AddToggle("MyToggle",{
     Text = "AFK Farm",
     Default = false,
     Callback = function(v)
 _G.AFK = v
 pcall(function()
-game:GetService("RunService").RenderStepped:Connect(function()
-if _G.AFK then
-TP(CFrame.new(0, 1500, 0)
-if _G.TweenCircleAFK then
-CircleTween(CFrame.new(10, 0, 10))
+while _G.AFK do 
+wait()
+TP(CFrame.new(0,700,0))
+wait(_G.CDAFK)
+TP(CFrame.new(500,700,500))
+wait(_G.CDAFK)
+TP(CFrame.new(-500,700,-500))
 end
-_G.TweenCircleAFK = true
-else
-TP(CFrame.new(0, -1500, 0)
-_G.TweenCircleAFK = false
-end
+end)
+end})
+Add.Left:AddDivider()
+Add.Left:AddSlider("MySlider",{
+    Text = "SpeedBoost",
+    Default = 0,
+    Min = 0, Max = 7,
+    Rounding = 1, Compact = true,
+    Callback = function(v)
+_G.SB = v
+game:GetService("RunService").RenderStepped:Connect(function()			
+pcall(function()	
+if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * _G.SB/100)
 end
 end)
 end)
+end})
+Add.Right:AddToggle({
+	Name = "Auto Whistle",
+	Description = "Auto Whistle",
+	Callback = function(value)
+_G.Whi = value
+while _G.Whi do wait()
+spawn(function()
+pcall(function()
+game:GetService("Players").LocalPlayer.PlayerScripts.Events.KeybindUsed:Fire("Whistle", true)
+game:GetService("ReplicatedStorage").Events.Whistle:FireServer()			
+end)
+end)
+end        
+end})
+Add.Right:AddToggle({
+	Name = "Auto Drink Cola",
+	Description = "Drink Cola (Can Complete Quest)",
+	Callback = function(value)
+_G.Drink = value
+while _G.Drink do wait()
+spawn(function()
+pcall(function()
+game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
+end)
+end)
+end        
 end})
