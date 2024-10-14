@@ -53,7 +53,8 @@ local Tab3 = Window:AddTab("Configs", "rbxassetid://8571432274")
 --// Group Tab \\
 local Add = {
   Left = Tab:AddLeftGroupbox("Main"),
-  Right = Tab:AddRightGroupbox("Auto")
+  Right = Tab:AddRightGroupbox("Auto"),
+  Light = Tab:AddRightGroupbox("Self")
 }
 Add.Left:AddSlider("MySlider",{
     Text = "Cooldown Farm",
@@ -95,9 +96,28 @@ end
 end)
 end)
 end})
-Add.Right:AddToggle({
-	Name = "Auto Whistle",
-	Description = "Auto Whistle",
+Add.Left:AddDivider()
+Add.Left:AddToggle("MyToggle",{
+    Text = "Fast Revive",
+    Default = false,
+    Callback = function(value)
+if value then
+workspace.Game.Settings:SetAttribute("ReviveTime", 1.9)
+else
+workspace.Game.Settings:SetAttribute("ReviveTime", 3)				
+end
+end})
+Add.Left:AddToggle("",{
+Text = "Warning Time",
+Callback = function(value)
+_G.Ti = value
+while _G.Ti do wait(1)			
+v0:Notify("WARNING | Remaining game is : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text .. "s")
+end				
+end})
+Add.Right:AddToggle("MyToggle",{
+	Text = "Auto Whistle",
+	Default = false,
 	Callback = function(value)
 _G.Whi = value
 while _G.Whi do wait()
@@ -109,9 +129,9 @@ end)
 end)
 end        
 end})
-Add.Right:AddToggle({
-	Name = "Auto Drink Cola",
-	Description = "Drink Cola (Can Complete Quest)",
+Add.Right:AddToggle("MyToggle",{
+	Text = "Auto Drink Cola",
+	Default = false,
 	Callback = function(value)
 _G.Drink = value
 while _G.Drink do wait()
@@ -121,4 +141,51 @@ game:GetService("ReplicatedStorage").Events.UseUsable:FireServer("Cola")
 end)
 end)
 end        
+end})
+Add.Light:AddLabel("Ambient"):AddColorPicker("MyColorPicker",{
+            Default = Color3.new(1, 1, 1),
+	    Callback = function(v)
+_G.ColorAmbient = v
+end})
+Add.Light:AddToggle("MyToggle",{
+    Text = "Fullbright",
+    Default = false,
+    Callback = function(v)
+_G.Fullbright = v
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.Fullbright then
+game.Lighting.Brightness = 1.5
+game.Lighting.GlobalShadows = false
+game.Lighting.OutdoorAmbient = _G.ColorAmbient or Color3.fromRGB(255, 255, 255)
+else
+game.Lighting.Brightness = 1
+game.Lighting.GlobalShadows = true
+game.Lighting.OutdoorAmbient = Color3.fromRGB(0, 0, 0)
+end
+end)
+end
+})
+Add.Light:AddToggle("MyToggle",{
+    Text = "Delete Fog",
+    Default = false,
+    Callback = function(v)
+pcall(function()
+if not game.Lighting:GetAttribute("FogStart") then game.Lighting:SetAttribute("FogStart", game.Lighting.FogStart) end
+if not game.Lighting:GetAttribute("FogEnd") then game.Lighting:SetAttribute("FogEnd", game.Lighting.FogEnd) end
+game.Lighting.FogStart = value and 0 or game.Lighting:GetAttribute("FogStart")
+game.Lighting.FogEnd = value and math.huge or game.Lighting:GetAttribute("FogEnd")
+local fog = game.Lighting:FindFirstChildOfClass("Atmosphere")
+if fog then
+if not fog:GetAttribute("Density") then fog:SetAttribute("Density", fog.Density) end
+fog.Density = value and 0 or fog:GetAttribute("Density")
+end
+end)
+end
+})
+
+Add.Light:AddButton({
+    Text = "Destroy Effect Sky",
+    DoubleClick = true,
+    Callback = function()
+game.Lighting.Sky:Destroy()
 end})
