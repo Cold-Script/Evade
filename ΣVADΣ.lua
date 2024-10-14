@@ -22,7 +22,7 @@ end
 local Players = game:GetService("Players")
 local workspace = game:GetService("Workspace")
 local RunService = game:GetService("RunService")
--// Accronym Game \\
+--// Accronym Game \\
 local Gravity = workspace.Gravity
 local VoidROBLOX = workspace.FallenPartsDestroyHeight
 local LocalPlayer = Players.LocalPlayer
