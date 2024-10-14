@@ -30,3 +30,48 @@ local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character
 local HumanoidRootPart = Character.HumanoidRootPart
 local Camera = workspace.CurrentCamera
+--// Library Setting \\
+local repo = "https://raw.githubusercontent.com/Cold-Script/Linoria/main/LinoriaLib/"
+local Library = loadstring(game:HttpGet(repo .. "Library_Loader.lua"))()
+local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
+local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
+local Options = getgenv().Linoria.Options
+local Toggles = getgenv().Linoria.Toggles
+local Window = Library:CreateWindow({
+	Title = "[ v1.5 ] ΣVADΣ | YOUHUB",
+	Center = true,
+	AutoShow = true,
+	Resizable = true,
+  NotifySide = "Right",
+	ShowCustomCursor = true,
+	TabPadding = 2,
+	MenuFadeTime = 0
+})
+--// Tab \\
+local Tab = Window:AddTab("Main", "rbxassetid://4335489011")
+local Tab2 = Window:AddTab("Exploit", "rbxassetid://10653012630")
+local Tab3 = Window:AddTab("Configs", "rbxassetid://8571432274")
+--// Group Tab \\
+local Add = {
+  Left = Tab:AddLeftGroupbox("Main"),
+  Right = Tab:AddRightGroupbox("Auto")
+}
+Add.Left:AddToggle("MyToggle",{
+    Text = "AFK Farm",
+    Default = false,
+    Callback = function(v)
+_G.AFK = v
+pcall(function()
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.AFK then
+TP(CFrame.new(0, 1500, 0)
+if _G.TweenCircleAFK then
+CircleTween(CFrame.new(10, 0, 10))
+end
+else
+TP(CFrame.new(0, -1500, 0)
+end
+end
+end)
+end)
+end})
