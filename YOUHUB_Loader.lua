@@ -18,7 +18,12 @@ end
 function TP(Pos)
 game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = Pos
 end
-
+local repo = "https://raw.githubusercontent.com/Cold-Script/Linoria/main/LinoriaLib/"
+local Library = loadstring(game:HttpGet(repo .. "Library_Loader.lua"))()
+local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
+local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
+local Options = getgenv().Linoria.Options
+local Toggles = getgenv().Linoria.Toggles
 local Window = Library:CreateWindow({
 	Title = "[ v1.5 ] ΣVADΣ | YOUHUB",
 	Center = true,
@@ -62,9 +67,21 @@ TP(CFrame.new(-500,700,-500))
 end
 end)
 end})
+Add.Left:AddToggle("MyToggle",{
+    Text = "Ticket Farm",
+    Default = false,
+    Callback = function(v)
+_G.TAFK = v
+pcall(function()
+while _G.TAFK do 
+wait(_G.CDAFK)
+TP(workspace.Tickets.CFrame)
+end
+end)
+end})
 Add.Left:AddDivider()
 Add.Left:AddSlider("MySlider",{
-    Text = "SpeedBoost",
+    Text = "Speed",
     Default = 0,
     Min = 0, Max = 7,
     Rounding = 1, Compact = true,
@@ -88,14 +105,6 @@ workspace.Game.Settings:SetAttribute("ReviveTime", 1.9)
 else
 workspace.Game.Settings:SetAttribute("ReviveTime", 3)				
 end
-end})
-Add.Left:AddToggle("",{
-Text = "Warning Time",
-Callback = function(value)
-_G.Ti = value
-while _G.Ti do wait(1)			
-Library:Notify("WARNING | Remaining game is : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("Menu").Center.Vote.Info.Read.Timer.Text .. "s")
-end				
 end})
 Add.Right:AddToggle("MyToggle",{
 	Text = "Auto Whistle",
