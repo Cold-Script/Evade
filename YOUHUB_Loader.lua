@@ -18,24 +18,7 @@ end
 function TP(Pos)
 game.Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame = Pos
 end
---// Acronym Classic \\
-local Players = game:GetService("Players")
-local workspace = game:GetService("Workspace")
-local RunService = game:GetService("RunService")
---// Accronym Game \\
-local Gravity = workspace.Gravity
-local VoidROBLOX = workspace.FallenPartsDestroyHeight
-local LocalPlayer = Players.LocalPlayer
-local Character = LocalPlayer.Character
-local HumanoidRootPart = Character.HumanoidRootPart
-local Camera = workspace.CurrentCamera
---// Library Setting \\
-local repo = "https://raw.githubusercontent.com/Cold-Script/Linoria/main/LinoriaLib/"
-local Library = loadstring(game:HttpGet(repo .. "Library_Loader.lua"))()
-local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
-local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
-local Options = getgenv().Linoria.Options
-local Toggles = getgenv().Linoria.Toggles
+
 local Window = Library:CreateWindow({
 	Title = "[ v1.5 ] ΣVADΣ | YOUHUB",
 	Center = true,
@@ -48,7 +31,6 @@ local Window = Library:CreateWindow({
 })
 --// Tab \\
 local Tab = Window:AddTab("Main", "rbxassetid://4335489011")
-local Tab2 = Window:AddTab("Exploit", "rbxassetid://10653012630")
 local Tab3 = Window:AddTab("Configs", "rbxassetid://8571432274")
 --// Group Tab \\
 local Add = {
@@ -112,7 +94,7 @@ Text = "Warning Time",
 Callback = function(value)
 _G.Ti = value
 while _G.Ti do wait(1)			
-v0:Notify("WARNING | Remaining game is : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("HUD").Center.Vote.Info.Read.Timer.Text .. "s")
+Library:Notify("WARNING | Remaining game is : " .. game.Players.LocalPlayer.PlayerGui:WaitForChild("Menu").Center.Vote.Info.Read.Timer.Text .. "s")
 end				
 end})
 Add.Right:AddToggle("MyToggle",{
@@ -142,6 +124,88 @@ end)
 end)
 end        
 end})
+Add.Light:AddToggle("MyToggle",{
+    Text = "No Wall",
+    Default = false,
+    Callback = function(v)
+_G.NW = v
+game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+if _G.NW then
+for _,v in pairs(workspace:GetDescendants()) do
+v.Barrier.CanCollide = false
+end
+else
+for _,v in pairs(workspace:GetDescendants()) do
+v.Barrier.CanCollide = true
+end
+end
+end)
+end)
+end})
+Add.Light:AddToggle("MyToggle",{
+    Text = "No Glass",
+    Default = false,
+    Callback = function(v)
+_G.NG = v
+game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+if _G.NG then
+for _,v in pairs(workspace:GetDescendants()) do
+v.Glass.CanCollide = false
+v.Glass.Transparency = 1
+end
+else
+for _,v in pairs(workspace:GetDescendants()) do
+v.Glass.CanCollide = true
+v.Glass.Transparency = 0
+end
+end
+end)
+end)
+end})
+Add.Light:AddDivider()
+Add.Light:AddToggle("MyToggle",{
+    Text = "Anti KillBrick",
+    Default = false,
+    Callback = function(v)
+_G.AKill = v
+game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+if _G.AKill then
+for _,v in pairs(workspace:GetDescendants()) do
+v.KillBrick.CanTouch = false
+end
+else
+for _,v in pairs(workspace:GetDescendants()) do
+v.KillBrick.CanTouch = true
+end
+end
+end)
+end)
+end})
+Add.Light:AddToggle("MyToggle",{
+    Text = "Anti Nextbots",
+    Default = false,
+    Callback = function(v)
+_G.ANext = v
+game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+if _G.ANext then
+for _,v in pairs(workspace:GetDescendants()) do
+v.HumanoidRootPart.CanTouch = false
+v.HumanoidRootPart.CanCollide = false									
+end
+else
+for _,v in pairs(workspace:GetDescendants()) do
+v.HumanoidRootPart.CanTouch = true
+v.HumanoidRootPart.CanCollide = false									
+end
+end
+end)
+end)
+end})
+Add.Light:AddDivider()
 Add.Light:AddLabel("Ambient"):AddColorPicker("MyColorPicker",{
             Default = Color3.new(1, 1, 1),
 	    Callback = function(v)
@@ -182,7 +246,18 @@ end
 end)
 end
 })
-
+Add.Light:AddToggle("MyToggle",{
+    Text = "Always Day",
+    Default = false,
+    Callback = function(v)
+pcall(function()
+if v then
+game.Lighting.ClockTime = 12
+else
+game.Lighting.ClockTime = 24
+end
+end)
+end})
 Add.Light:AddButton({
     Text = "Destroy Effect Sky",
     DoubleClick = true,
